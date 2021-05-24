@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "This is the front of PrecioJusto.app",
   "productName": "PrecioJusto",
-  "author": "bcastanerc <60187468+bcastanerc@users.noreply.github.com>",
+  "author": "Precio Justo",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",

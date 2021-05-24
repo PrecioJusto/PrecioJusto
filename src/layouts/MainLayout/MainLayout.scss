@@ -1,0 +1,25 @@
+* {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.desktop {
+    .q-toolbar {
+        padding: 5px 200px;
+    }
+    
+    .ul-align-right {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    
+    
+}
+
+.mobile {
+    .q-avatar {
+        margin: auto;
+    }
+}

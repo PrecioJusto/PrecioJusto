@@ -4,11 +4,9 @@
       alt="Quasar logo"
       src="~assets/quasar-logo-full.svg"
     >
+    Halo
   </q-page>
 </template>
 
-<script>
-export default {
-  name: 'PageIndex',
-};
-</script>
+<script src='./Index.js'></script>
+<style scoped lang="scss" src="./Index.scss"></style>
