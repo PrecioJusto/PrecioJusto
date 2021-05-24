@@ -19,13 +19,13 @@
         <div class="align-right col-3">
           <ul class="ul-align-right">
             <li class="q-mx-xs">
-                <q-btn flat rounded icon="ion-cart" label="Carrito" stack />
+                <q-btn flat icon="ion-cart" label="Carrito" stack />
             </li>
             <li class="q-mx-xs">
-              <q-btn flat rounded icon="ion-heart" label="Favoritos" stack />
+              <q-btn flat icon="ion-heart" label="Favoritos" stack />
             </li>
             <li class="q-mx-xs">
-              <q-btn flat rounded icon="ion-contact" label="Cuenta" stack />
+              <q-btn flat icon="ion-contact" label="Cuenta" stack />
             </li>
             <li></li>
           </ul>

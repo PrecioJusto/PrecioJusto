@@ -2,17 +2,17 @@ import axios from 'axios';
 import { Notify } from 'quasar';
 import router from 'src/router';
 
-const instance1 = axios.create({
+const apiApplication = axios.create({
   url: 'http://server247.cfgs.esliceu.net',
 });
 
-const instance2 = axios.create({
+const apiProducts = axios.create({
   url: 'http://server247.cfgs.esliceu.net',
 });
 
-export const instances = { instance1, instance2 };
+export const instances = { apiApplication, apiProducts };
 
-[instance1, instance2].forEach((instance) => {
+[apiApplication, apiProducts].forEach((instance) => {
   instance.interceptors.request.use(
     (config) => {
       config.withCredentials = true;

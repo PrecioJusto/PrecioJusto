@@ -1,10 +1,10 @@
 import { instances } from 'src/boot/axios';
 
-const { instance1 } = instances;
+const { apiProducts } = instances;
 
 class ProductRepository {
   getProducts() {
-    return instance1.get('/all');
+    return apiProducts.get('/all');
   }
 }
 
