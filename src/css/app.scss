@@ -1,1 +1,19 @@
 // app global css in SCSS form
+
+@font-face {
+    font-family: base;
+    src: url(./fonts/Gilroy-Light.woff);
+}
+
+@font-face {
+    font-family: customBold;
+    src: url(./fonts/Gilroy-ExtraBold.woff);
+}
+
+* {
+    font-family: 'base';
+}
+
+.customBold {
+    font-family: customBold
+}
