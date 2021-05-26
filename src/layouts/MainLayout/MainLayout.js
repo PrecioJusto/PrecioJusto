@@ -1,8 +1,9 @@
-import EssentialLink from 'components/EssentialLink.vue';
+import SearchBar from 'src/components/SearchBar/SearchBar.vue';
+import MenuBar from 'src/components/MenuBar/MenuBar.vue';
 
 export default {
   name: 'MainLayout',
-  components: { EssentialLink },
+  components: { SearchBar, MenuBar },
   data() {
     return {
       leftDrawerOpen: false,
