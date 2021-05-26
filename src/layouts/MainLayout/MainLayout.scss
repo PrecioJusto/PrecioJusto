@@ -5,7 +5,7 @@
 
 .desktop {
     .q-toolbar {
-        padding: 5px 200px;
+        padding: 5px 100px;
     }
     
     .ul-align-right {
@@ -14,12 +14,13 @@
         justify-content: flex-end;
         align-items: center;
     }
-    
-    
-}
 
-.mobile {
-    .q-avatar {
-        margin: auto;
+    .menu {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
     }
 }
+
+.mobile {}

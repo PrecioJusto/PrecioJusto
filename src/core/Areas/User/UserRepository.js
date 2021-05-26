@@ -1,11 +1,11 @@
 import { instances } from 'src/boot/axios';
 
-const { api_application } = instances;
+const { apiApplication } = instances;
 
-class ProductRepository {
-  getProducts() {
-    return api_products.get('/all');
+class UserRepository {
+  getUserInfo() {
+    return apiApplication.get('/userInfo');
   }
 }
 
-export const productRepository = new ProductRepository();
+export const userRepository = new UserRepository();
