@@ -1,1 +1,41 @@
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
 
+.desktop {
+    .q-page {
+        #center {
+            margin: auto;
+            #form-container{
+                text-align: center;
+                padding: 15%;
+                border-radius: 5px;
+                -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+                -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+                box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+
+                button {
+                    width: 100%;
+                    margin: 5px;
+                    img {
+                        width: 25px;
+                    }
+                }
+
+                form {
+                    margin:20px 0;
+                    button {
+                        margin-top: 15px;
+                    }
+                }
+
+                span {
+                    color: #6aba87;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

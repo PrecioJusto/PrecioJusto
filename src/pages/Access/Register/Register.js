@@ -17,7 +17,6 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
-      dense: false,
     };
   },
   created() {

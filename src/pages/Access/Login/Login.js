@@ -12,7 +12,8 @@ export default {
   components: {},
   data() {
     return {
-      dense: false,
+      email: '',
+      password: '',
     };
   },
   created() {
@@ -52,14 +53,14 @@ export default {
     },
     vuelidateMsg(type) {
       if (type === 'password') {
-        if (!this.$v.password.required) return 'Required Field.';
+        if (!this.$v.password.required) return 'Campo requerido.';
         if (!this.$v.password.sameAs) {
           return 'Password is not valid, must contain 1 Capital leter and 1 number.';
         }
         if (!this.$v.password.minLength) { return 'Password is not valid. minimum lenght is 6 chars'; }
         return 'Password is not valid. maximum lenght is 8 chars';
       }
-      if (!this.$v.email.required) return 'Required Field.';
+      if (!this.$v.email.required) return 'Campo requerido.';
       return 'Email is not valid. Enter a valid Email';
     },
   },
