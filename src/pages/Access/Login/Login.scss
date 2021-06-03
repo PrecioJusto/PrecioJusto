@@ -7,10 +7,13 @@
 .desktop {
     .q-page {
         #center {
-            margin: auto;
+            width: 100%;
             #form-container{
+                background-color: white;
                 text-align: center;
-                padding: 15%;
+                margin: 11%  10% auto 60% ;
+                width: 32%;
+                padding: 3%;
                 border-radius: 5px;
                 -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
                 -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
@@ -21,6 +24,7 @@
                     margin: 5px;
                     img {
                         width: 25px;
+                        margin: 0 20px;
                     }
                 }
 

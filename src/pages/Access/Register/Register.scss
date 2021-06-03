@@ -7,8 +7,28 @@
 .desktop {
     .q-page {
         #center {
-            margin: 0 auto;
-            width: 40%;
+            width: 100%;
+            #form-container{
+                background-color: white;
+                text-align: center;
+                margin: 11% 10% auto 60%;
+                width: 32%;
+                padding: 2% 4%;
+                border-radius: 5px;
+                -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+                -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+                box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+
+                button {
+                    width: 100%;
+                    margin: 15px 0px;
+                }
+
+                span {
+                    color: #6aba87;
+                    font-weight: bold;
+                }
+            }
         }
     }
 }

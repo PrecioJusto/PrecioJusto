@@ -5,15 +5,15 @@
           <div id="form-container">
             <q-btn no-caps rounded>
               <img src="https://developers.google.com/identity/images/g-logo.png">
-              <div>Google account</div>
+              <div>Entra con Google</div>
               </q-btn>
             <q-btn no-caps color="blue-8" rounded>
               <img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png">
-              <div>Facebook account</div>
+              <div>Entra con Facebook</div>
             </q-btn>
             <q-btn no-caps color="cyan-14" rounded>
               <img src="https://www.pngkey.com/png/full/2-27646_twitter-logo-png-transparent-background-logo-twitter-png.png">
-              <div>Twitter account</div>
+              <div>Entra con Twitter</div>
             </q-btn>
             <p class="q-my-lg">O entra con tu cuenta de Precio Justo:</p>
             <q-form id="formIn" @submit="onSubmit" class="q-gutter-md">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-page>
+    <q-page class="flex row">
       <div id="center">
           <div id="form-container">
             <q-form
@@ -57,10 +57,10 @@
                 :error-message="vuelidateMsg('confirmPassword')"
               >
               </q-input>
-                <q-btn label="Registrarse" type="submit" color="primary"/>
+                <q-btn label="Registrate" type="submit" color="primary" rounded/>
             </q-form>
             <div id="redirection">
-              ¿Ya tienes una cuenta? <span  @click="$router.push('/login')">Entra</span>
+              ¿Ya tienes una de cuenta? <span  @click="$router.push('/login')">Entra</span>
             </div>
           </div>
       </div>

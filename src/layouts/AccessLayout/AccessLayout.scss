@@ -5,6 +5,11 @@
 }
 
 .desktop {
+   .q-layout {
+    background-image: url("../../../public/img/backgroundimg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+   }
 }
 
 .mobile {
