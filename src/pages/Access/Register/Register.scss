@@ -9,26 +9,56 @@
         #center {
             width: 100%;
             #form-container{
-                background-color: white;
-                text-align: center;
-                margin: 11% 10% auto 60%;
-                width: 32%;
-                padding: 2% 4%;
-                border-radius: 5px;
+                margin: 200px  200px auto 60% ;
+                width: 470px;
+                padding: 45px;
                 -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
                 -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
                 box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
-
-                button {
-                    width: 100%;
-                    margin: 15px 0px;
-                }
-
-                span {
-                    color: #6aba87;
-                    font-weight: bold;
-                }
             }
+        }
+    }
+}
+
+#form-container {
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+    -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+    box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+    button {
+        width: 100%;
+        margin: 5px;
+        div {
+            width: 140px;
+        }
+    }
+
+    form {
+        margin:20px 0;
+        button {
+            margin-top: 15px;
+        }
+    }
+
+    span {
+        color: #6aba87;
+        font-weight: bold;
+    }
+}
+
+.mobile {
+    #center {
+        background-image: url("../../../../public/img/backgroundimg.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        width: 100%;
+        #form-container {
+            margin: 20% auto;
+            width: 80%;
+            padding: 20px 18px 20px 10px;
+            text-align: center;
         }
     }
 }
