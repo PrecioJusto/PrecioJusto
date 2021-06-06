@@ -6,7 +6,7 @@
 
         <q-card-section class="product-info q-mt-sm">
           <div v-if="cardMode === 'explore-page'" class="customBold">{{ categoryName }}</div>
-          <div v-if="cardMode === 'home-page'" class="">{{ categoryName }}</div>
+          <div v-if="cardMode === 'home-page'">{{ categoryName }}</div>
         </q-card-section>
       </div>
     </q-card>
