@@ -2,12 +2,17 @@
     width: 230px;
     border-radius: 20px;
     border: 2px solid rgb(236, 236, 236);
-    word-wrap: break-word
+    word-wrap: break-word;
+    height: 300px;
 }
 
 .text-h6 {
     font-size: 12pt;
     line-height: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .q-card-img {
@@ -23,6 +28,9 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 .product-price {
@@ -55,11 +63,42 @@
 }
 
 .mobile {
+    .q-card-img {
+        width: 80px;
+    }
+
     .product-info {
-        padding: 15px 13px;
+        padding: 15px 7px;
     }
 
     .text-subtitle2 {
         padding: 5px 0;
+    }
+
+    .q-card {
+        height: 230px;
+        width: 155px;
+    }
+
+    .text-h6 {
+        font-size: 10pt;
+    }
+
+    .text-subtitle2 {
+        font-size: 9pt;
+    }
+
+    .product-price {
+        font-size: 12pt;
+    }
+
+    .add-product {
+        width: 36px;
+        height: 35px;
+        margin: 0 5px;
+    }
+
+    .card-footer {
+        padding: 6px;
     }
 }
