@@ -14,7 +14,8 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",
-    "quasar": "^1.0.0"
+    "quasar": "^1.0.0",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
