@@ -2,7 +2,7 @@
    <div>
      <q-card class="my-card q-py-sm non-selectable" flat bordered>
       <div class="product-info-wrapper cursor-pointer" @click="productDetail">
-        <img class="q-card-img" :src="productImg">
+        <img class="q-card-img non-selectable" :src="productImg">
         <q-skeleton height="100px" square v-if="skeleton" />
 
         <q-card-section class="product-info">
