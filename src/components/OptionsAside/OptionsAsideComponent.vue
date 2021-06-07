@@ -16,7 +16,7 @@
                 <q-item-section v-if="menuItem.route == ''">
                   {{ menuItem.label }}
                 </q-item-section>
-                <q-item-section v-if="menuItem.route != ''" @click="$router.push(menuItem.route).catch(()=>{})" exact: true>
+                <q-item-section v-if="menuItem.route != ''" @click="$router.push(menuItem.route).catch(()=>{})">
                   {{ menuItem.label }}
                 </q-item-section>
               </q-item>

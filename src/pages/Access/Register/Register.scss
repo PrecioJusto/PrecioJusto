@@ -7,58 +7,76 @@
 .desktop {
     .q-page {
         #center {
-            width: 100%;
             #form-container{
+                background-color: white;
+                border-radius: 10px;
                 margin: 200px  200px auto 60% ;
                 width: 470px;
                 padding: 45px;
                 -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
                 -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
                 box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
+
+                form {
+                    margin:20px 0;
+                    button {
+                        margin-top: 15px;
+                    }
+                }
+            
+                span {
+                    color: #6aba87;
+                    font-weight: bold;
+                }
+
+                @media screen and (max-width: 1200px){
+                    margin: 200px  200px auto 50% ;
+                }
+                @media screen and (max-width: 950px){
+                    margin: 200px  200px auto 40% ;
+                }
+                @media screen and (max-width: 790px){
+                    margin: 200px  200px auto;
+                }
             }
         }
     }
 }
 
-#form-container {
-    background-color: white;
-    border-radius: 10px;
+#center {
+    width: 100%;
     text-align: center;
-    -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
-    -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
-    box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
-    button {
-        width: 100%;
-        margin: 5px;
-        div {
-            width: 140px;
+    #form-container {
+        #googleButton {
+            background-color: white;
         }
-    }
-
-    form {
-        margin:20px 0;
-        button {
-            margin-top: 15px;
+        form {
+            button {
+                margin: 15px;
+                width: 96%;
+            }
         }
-    }
-
-    span {
-        color: #6aba87;
-        font-weight: bold;
+        span {
+            color: #6aba87;
+            font-weight: bold;
+        }
     }
 }
+
 
 .mobile {
     #center {
         background-image: url("../../../../public/img/backgroundimg.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
-        width: 100%;
         #form-container {
-            margin: 20% auto;
-            width: 80%;
-            padding: 20px 18px 20px 10px;
-            text-align: center;
+            padding: 60px 22px 60px 15px;
+            background-color: rgba(255, 255, 255, 0.94);
+            width: 100%;
+            height: 100vh;
+            form {
+                margin: auto 20px;
+            }
         }
     }
 }

@@ -79,17 +79,17 @@ export default {
       if (type === 'password') {
         if (!this.$v.password.required) return 'Campo requerido.';
         if (!this.$v.password.sameAs) {
-          return 'Password is not valid, must contain 1 Capital leter and 1 number.';
+          return 'La contraseña no es valida, debe contener una mayuscula 1 y 1 número.';
         }
-        if (!this.$v.password.minLength) { return 'Password is not valid. minimum lenght is 6 chars'; }
-        return 'Password is not valid. maximum lenght is 8 chars';
+        if (!this.$v.password.minLength) { return 'La contraseña no es valida.La longitud minima es de 6 caracteres.'; }
+        return 'La contraseña no es valida.La longitud máxima es de 8 caracteres.';
       }
       if (type === 'confirmPassword') {
         if (!this.$v.confirmPassword.required) return 'Campo requerido.';
-        if (!this.$v.confirmPassword.sameAs) return "Passwords don't match.";
+        if (!this.$v.confirmPassword.sameAs) return 'Las contraseñas no coinciden.';
       }
       if (!this.$v.email.required) return 'Campo requerido.';
-      return 'Email is not valid. Enter a valid Email';
+      return 'El email no es valido. introduce un nuevo Email';
     },
   },
 };

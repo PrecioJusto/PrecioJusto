@@ -3,7 +3,7 @@
       <q-page class="flex row">
         <div id="center">
           <div id="form-container">
-            <q-btn no-caps rounded>
+            <q-btn no-caps rounded id="googleButton">
               <img src="https://developers.google.com/identity/images/g-logo.png">
               <div>Entra con Google</div>
               </q-btn>
