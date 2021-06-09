@@ -22,6 +22,7 @@ export const instances = { apiApplication, apiProducts };
     (error) => Promise.reject(error),
   );
 
+  /*
   instance.interceptors.response.use(
     (response) => {
       if (JSON.stringify(response.data.notifyType)) {
@@ -51,4 +52,5 @@ export const instances = { apiApplication, apiProducts };
       return Promise.reject(error);
     },
   );
+      */
 });
