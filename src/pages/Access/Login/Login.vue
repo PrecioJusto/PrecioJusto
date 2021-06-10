@@ -3,15 +3,15 @@
       <q-page class="flex row">
         <div id="center">
           <div id="form-container">
-            <q-btn no-caps rounded id="googleButton">
+            <q-btn no-caps rounded id="googleButton" @click="redirectGoogle">
               <img src="https://developers.google.com/identity/images/g-logo.png">
               <div>Entra con Google</div>
               </q-btn>
-            <q-btn no-caps color="cyan-14" rounded>
+            <q-btn no-caps color="cyan-14" rounded @click="redirectTwitter">
               <img src="https://www.pngkey.com/png/full/2-27646_twitter-logo-png-transparent-background-logo-twitter-png.png">
               <div>Entra con Twitter</div>
             </q-btn>
-            <q-btn no-caps color="blue-8" rounded>
+            <q-btn no-caps color="blue-8" rounded @click="redirectFacebook">
               <img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png">
               <div>Entra con Facebook</div>
             </q-btn>
@@ -19,6 +19,7 @@
             <q-form id="formIn" @submit="onSubmit" class="q-gutter-md">
               <q-input
                 dense
+                type="email"
                 v-model="email"
                 label="Email"
                 @blur="$v.email.$touch"

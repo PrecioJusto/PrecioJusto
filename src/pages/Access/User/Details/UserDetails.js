@@ -4,11 +4,18 @@ import {
   email,
   minLength,
   maxLength,
+  numeric,
 } from 'vuelidate/lib/validators';
+
+import ProfileImage from 'src/components/ProfileImage/ProfileImage';
+import ProfileImageCropper from 'src/components/ProfileImage/ProfileImageCropper';
 
 export default {
   name: 'PageUserDetails',
-  components: {},
+  components: {
+    ProfileImage,
+    ProfileImageCropper,
+  },
   data() {
     return {
       name: '',
@@ -16,6 +23,9 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
+      userImage: '',
+      gender: 'nodefinido',
+      phone: '',
     };
   },
   created() {
@@ -23,6 +33,7 @@ export default {
   validations: {
     name: { required, minLength: minLength(3), maxLength: maxLength(20) },
     surname: { required, minLength: minLength(3), maxLength: maxLength(100) },
+    phone: { minLength: minLength(9), maxLength: maxLength(9), numeric },
     password: {
       required,
       minLength: minLength(6),
@@ -87,8 +98,12 @@ export default {
         if (!this.$v.confirmPassword.required) return 'Campo requerido.';
         if (!this.$v.confirmPassword.sameAs) return 'Las contraseñas no coinciden.';
       }
+      if (type === 'phone') {
+        if (!this.$v.phone.numeric) return 'Solo puede contener numeros.';
+        return 'El numero de telefono no es valido, debe de ser de 9 digitos.';
+      }
       if (!this.$v.email.required) return 'Campo requerido.';
-      return 'El email no es valido. introduce un nuevo Email';
+      return 'El email no es valido. introduce un nuevo Email.';
     },
   },
 };

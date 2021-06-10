@@ -4,7 +4,7 @@ const { apiProducts } = instances;
 
 class ProductRepository {
   getProducts() {
-    return apiProducts.get('/all');
+    return apiProducts.get('/products');
   }
 }
 

@@ -33,7 +33,17 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('src/pages/Access/User/UserDetails.vue'),
+        component: () => import('src/pages/Access/User/Details/UserDetails.vue'),
+      },
+    ],
+  },
+  {
+    path: '/user/settings/notifications',
+    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue'),
       },
     ],
   },

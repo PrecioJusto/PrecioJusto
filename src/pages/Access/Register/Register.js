@@ -1,4 +1,5 @@
-// import { userRepository } from 'src/core/Areas/User/UserRepository.js';
+import { userRepository } from 'src/core/Areas/User/UserRepository.js';
+
 import {
   required,
   sameAs,
@@ -26,10 +27,10 @@ export default {
     surname: { required, minLength: minLength(3), maxLength: maxLength(100) },
     password: {
       required,
-      minLength: minLength(6),
-      maxLength: maxLength(8),
+      minLength: minLength(8),
+      maxLength: maxLength(20),
       sameAs: sameAs(function checkPass() {
-        const matcher = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])/g;
+        const matcher = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
         if (matcher.test(this.password)) return this.password;
         return false;
       }),
@@ -48,19 +49,16 @@ export default {
         && !this.$v.email.$error
         && !this.$v.password.$error
         && !this.$v.confirmPassword.$error
-        && this.username !== ''
+        && this.name !== ''
+        && this.surname !== ''
         && this.email !== ''
         && this.password !== ''
         && this.confirmPassword !== ''
       ) {
-        const user = null;
-        /* userRepository.register();
-          const user = await registerUser(
-          this.username,
-          this.email,
-          this.password,
-        ); */
-        if (user.notifyType === 'SUCCESS') {
+        const user = userRepository.register({
+          username: this.name, usersurname: this.surname, useremail: this.email, userpass: this.password, userpassrepeat: this.confirmPassword,
+        });
+        if (!user.messageError) {
           this.$router.push({ path: '/login' });
         }
       }
@@ -79,10 +77,10 @@ export default {
       if (type === 'password') {
         if (!this.$v.password.required) return 'Campo requerido.';
         if (!this.$v.password.sameAs) {
-          return 'La contraseña no es valida, debe contener una mayuscula 1 y 1 número.';
+          return 'La contraseña no es valida, debe contener 1 mayuscula, 1 carácter especial y 1 número.';
         }
-        if (!this.$v.password.minLength) { return 'La contraseña no es valida.La longitud minima es de 6 caracteres.'; }
-        return 'La contraseña no es valida.La longitud máxima es de 8 caracteres.';
+        if (!this.$v.password.minLength) { return 'La contraseña no es valida.La longitud minima es de 8 caracteres.'; }
+        return 'La contraseña no es valida.La longitud máxima es de 20 caracteres.';
       }
       if (type === 'confirmPassword') {
         if (!this.$v.confirmPassword.required) return 'Campo requerido.';

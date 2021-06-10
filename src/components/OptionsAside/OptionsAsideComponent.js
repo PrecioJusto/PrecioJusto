@@ -10,7 +10,7 @@ export default {
           label: 'Mis datos', icon: 'las la-id-card', separator: true, route: '/user',
         },
         {
-          label: 'Ajustes', icon: 'las la-user-cog', separator: true, route: '/user/settings',
+          label: 'Notificaciones', icon: 'las la-bell', separator: true, route: '/user/settings/notifications',
         },
         {
           label: 'Carritos',
@@ -34,5 +34,8 @@ export default {
     };
   },
   methods: {
+    signOut() {
+
+    },
   },
 };

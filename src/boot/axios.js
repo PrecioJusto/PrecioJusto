@@ -1,14 +1,25 @@
+// import Vue from 'vue';
 import axios from 'axios';
 import { Notify } from 'quasar';
-import router from 'src/router';
+// import router from 'src/router';
+// import router from 'src/router';
+
+const url = require('url');
 
 const apiApplication = axios.create({
-  url: 'http://server247.cfgs.esliceu.net',
+  baseURL: 'http://ec2-18-220-122-6.us-east-2.compute.amazonaws.com:5000',
 });
 
 const apiProducts = axios.create({
-  url: 'http://server247.cfgs.esliceu.net',
+  baseURL: 'http://preciojustoapp.z126.esliceu.tk:12650',
 });
+
+function createNotification(type, msg) {
+  Notify.create({
+    type,
+    message: msg,
+  });
+}
 
 export const instances = { apiApplication, apiProducts };
 
@@ -24,24 +35,16 @@ export const instances = { apiApplication, apiProducts };
 
   instance.interceptors.response.use(
     (response) => {
-      if (JSON.stringify(response.data.notifyType)) {
-        Notify.create({
-          type: 'positive',
-          message: JSON.stringify(response.data.notifyMessage),
-        });
-      }
+      const conf = url.parse(response.config.url);
+      if (conf.pathname === '/register') createNotification('positive', `Te has registrado correctamente con el correo ${response.data.useremail}`);
+
       return response;
     },
     (error) => {
-      if (error && error.response && error.response.status === 401) {
-        if (JSON.stringify(error.response.data.notifyType)) {
-          Notify.create({
-            type: 'negative',
-            message: JSON.stringify(error.response.data.notifyMessage),
-          });
+      if (error && error.response) {
+        if (error.response.status === 401) {
+          // router.push('/login');
         }
-
-        router.push('/login');
       } else {
         Notify.create({
           type: 'negative',

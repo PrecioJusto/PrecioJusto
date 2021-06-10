@@ -14,7 +14,8 @@
                 @blur="$v.name.$touch"
                 :error="$v.name.$error"
                 :error-message="vuelidateMsg('name')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-user" /></template>
+                </q-input>
 
               <q-input
                 dense
@@ -23,7 +24,8 @@
                 @blur="$v.surname.$touch"
                 :error="$v.surname.$error"
                 :error-message="vuelidateMsg('surname')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-user" /></template>
+                </q-input>
 
               <q-input
                 dense
@@ -33,7 +35,8 @@
                 @blur="$v.email.$touch"
                 :error="$v.email.$error"
                 :error-message="vuelidateMsg('email')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-at" /></template>
+                </q-input>
 
               <q-input
                 dense
@@ -44,7 +47,8 @@
                 @blur="$v.password.$touch"
                 :error="$v.password.$error"
                 :error-message="vuelidateMsg('password')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-lock" /></template>
+                </q-input>
 
               <q-input
                 dense
@@ -55,7 +59,7 @@
                 @blur="$v.confirmPassword.$touch"
                 :error="$v.confirmPassword.$error"
                 :error-message="vuelidateMsg('confirmPassword')"
-              >
+              ><template v-slot:prepend><q-icon name="las la-lock" /></template>
               </q-input>
                 <q-btn label="Registrate" type="submit" color="primary" rounded/>
             </q-form>

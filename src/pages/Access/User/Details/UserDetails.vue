@@ -1,8 +1,8 @@
 <template>
   <div>
-    <q-page class="flex row">
+    <q-page>
         <div id="center">
-          <h1>Your profile</h1>
+          <h1>Mis datos personales</h1>
               <q-form
               id="formIn"
               @submit="onSubmit"
@@ -14,7 +14,8 @@
                 @blur="$v.name.$touch"
                 :error="$v.name.$error"
                 :error-message="vuelidateMsg('name')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-user" /></template>
+                </q-input>
 
               <q-input
                 dense
@@ -23,7 +24,8 @@
                 @blur="$v.surname.$touch"
                 :error="$v.surname.$error"
                 :error-message="vuelidateMsg('surname')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-user" /></template>
+                </q-input>
 
               <q-input
                 dense
@@ -33,8 +35,26 @@
                 @blur="$v.email.$touch"
                 :error="$v.email.$error"
                 :error-message="vuelidateMsg('email')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-at" /></template>
+                </q-input>
 
+                <q-input
+                dense
+                type="tel"
+                v-model="phone"
+                label="Teléfono"
+                @blur="$v.phone.$touch"
+                :error="$v.phone.$error"
+                :error-message="vuelidateMsg('phone')"
+                ><template v-slot:prepend><q-icon name="las la-mobile" /></template>
+                </q-input>
+
+              <p>Género:</p>
+              <div class="q-gutter-sm">
+                <q-radio v-model="gender" val="hombre" label="Hombre" />
+                <q-radio v-model="gender" val="mujer" label="Mujer" />
+                <q-radio v-model="gender" val="nodefinido" label="Prefiero no decirlo" />
+              </div>
               <q-input
                 dense
                 type="password"
@@ -44,18 +64,19 @@
                 @blur="$v.password.$touch"
                 :error="$v.password.$error"
                 :error-message="vuelidateMsg('password')"
-                ></q-input>
+                ><template v-slot:prepend><q-icon name="las la-lock" /></template>
+                </q-input>
 
               <q-input
                 dense
                 type="password"
-                v-model="actualPassword"
-                label="Contraseña actual"
+                v-model="confirmPassword"
+                label="Confirmar contraseña"
                 hint="Las contraseñas deben coincidir"
                 @blur="$v.confirmPassword.$touch"
                 :error="$v.confirmPassword.$error"
                 :error-message="vuelidateMsg('confirmPassword')"
-              >
+              ><template v-slot:prepend><q-icon name="las la-lock" /></template>
               </q-input>
                 <q-btn label="Actualizar perfil" type="submit" color="primary" rounded/>
             </q-form>

@@ -7,12 +7,12 @@ class UserRepository {
     return apiApplication.get('/userInfo');
   }
 
-  login() {
-    return apiApplication.get('/login');
+  login(data) {
+    return apiApplication.post('/login', data);
   }
 
-  register() {
-    return apiApplication.get('/register');
+  register(data) {
+    return apiApplication.post('/register', data);
   }
 }
 

@@ -11,17 +11,23 @@
                 v-ripple
               >
                 <q-item-section avatar>
-                  <q-icon :name="menuItem.icon" />
+                  <q-icon  v-if="menuItem.route == ''"  class="signOut" :name="menuItem.icon" />
+                   <q-icon v-else :name="menuItem.icon" />
                 </q-item-section>
-                <q-item-section v-if="menuItem.route == ''">
+                <q-item-section class="signOut" v-if="menuItem.route == ''" @click="signOut">
                   {{ menuItem.label }}
                 </q-item-section>
-                <q-item-section v-if="menuItem.route != ''" @click="$router.push(menuItem.route).catch(()=>{})">
+                <q-item-section v-else @click="$router.push(menuItem.route).catch(()=>{})">
                   {{ menuItem.label }}
                 </q-item-section>
               </q-item>
               <q-separator :key="'sep' + index" v-if="menuItem.separator" />
             </template>
+            <div>
+              <q-item-section avatar>
+                  <p>tests</p>
+                </q-item-section>
+            </div>
           </q-list>
         </q-scroll-area>
       </q-drawer>
