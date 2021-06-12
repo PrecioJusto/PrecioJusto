@@ -1,5 +1,10 @@
 const responses = {
 
+  '-1': 'Error desconocido',
+  '-2': 'Error de request',
+  '-3': 'Error no autorizado',
+  '-4': 'Puerto erroeno',
+
   /// ///////////////////////////
   /// //    API PRODUCTS    /////
   /// ///////////////////////////
@@ -82,10 +87,12 @@ const responses = {
   305: 'Error de validación de la contraseña',
   306: 'Error la contraseña de confirmación no coincide',
   307: 'Error el numero de telefono no es valido',
-  308: 'Error no puede entrar usando este metodo',
-  309: 'Error al logearse con google Oauth',
-  310: 'Error al logearse con Twitter Oauth',
-  311: 'Error al logearse con Facebook Oauth',
+  308: 'Error esta cuenta no es nativa, entra con Oauth',
+  309: 'Error esta cuenta esta inactiva, crea una nueva',
+
+  350: 'Error al logearse con google Oauth',
+  351: 'Error al logearse con Twitter Oauth',
+  352: 'Error al logearse con Facebook Oauth',
 };
 
 export default function getMessageFromCode(code) {

@@ -6,7 +6,7 @@
           <p>Aquí puedes configurar cuando y por qué recibirás notificaciones,
              tanto en tu dispositivo móvil como en tu ordenador personal. Estas opciones se pueden cambiar en cualquier momento.</p>
           <div>
-           - Cuando un producto favorito <span>baje</span> de precio.
+           <p>Producto favorito <span>baje</span> de precio.</p>
             <q-toggle
               v-model="fauvoriteProductNotifications"
               checked-icon="check"
@@ -15,7 +15,7 @@
             />
           </div>
           <div>
-           - Cuando un producto de un carrito <span>baje</span> de precio.
+          <p>Producto de un carrito <span>baje</span> de precio.</p>
             <q-toggle
               v-model="cartNotifications"
               checked-icon="check"
@@ -24,7 +24,7 @@
             />
           </div>
           <div>
-            - Cuando un producto deje de estar <span>disponible</span> en un supermercado.
+            <p>Producto deje de estar <span>disponible</span> en un supermercado.</p>
             <q-toggle
                 v-model="fauvoriteProductInNotAvailableNotifications"
                 checked-icon="check"

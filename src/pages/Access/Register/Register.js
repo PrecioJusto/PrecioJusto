@@ -55,10 +55,10 @@ export default {
         && this.password !== ''
         && this.confirmPassword !== ''
       ) {
-        const user = userRepository.register({
+        const user = await userRepository.register({
           username: this.name, usersurname: this.surname, useremail: this.email, userpass: this.password, userpassrepeat: this.confirmPassword,
         });
-        if (!user.messageError) {
+        if (user.data.email) {
           this.$router.push({ path: '/login' });
         }
       }

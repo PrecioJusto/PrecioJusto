@@ -2,7 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import GAuth from 'vue-google-oauth2';
 import { Notify, LocalStorage } from 'quasar';
-import { getMessageFromCode } from 'src/utils/responseMapper';
+import getMessageFromCode from 'src/utils/responseMapper';
 
 // import router from 'src/router';
 
@@ -14,8 +14,6 @@ const options = {
 
 Vue.use(GAuth, options);
 
-let notificationType = 'positive';
-
 const apiApplication = axios.create({
   baseURL: 'https://preciojusto.app/api',
 });
@@ -24,9 +22,9 @@ const apiProducts = axios.create({
   baseURL: 'http://preciojustoapp.z126.esliceu.tk:12650',
 });
 
-function createNotification(type, msg) {
+function createNotification(notifyType, msg) {
   Notify.create({
-    type,
+    type: notifyType,
     message: msg,
   });
 }
@@ -46,15 +44,14 @@ export const instances = { apiApplication, apiProducts };
   instance.interceptors.response.use(
     (response) => {
       const conf = url.parse(response.config.url);
-      if (conf.pathname === '/register') createNotification(notificationType, `Te has registrado correctamente con el correo ${response.data.useremail}`);
+      if (conf.pathname === '/register') createNotification('positive', `Te has registrado correctamente con el correo ${response.data.useremail}`);
       return response;
     },
     (error) => {
-      notificationType = 'negative';
-      if (error && error.response) {
-        createNotification(notificationType, getMessageFromCode(error.response.data.messageError));
+      if (error && error.response && error.response.data.messageError) {
+        createNotification('negative', getMessageFromCode(error.response.data.messageError));
       } else {
-        createNotification(notificationType, 'Error desconocido');
+        createNotification('negative', 'Error desconocido');
       }
       return Promise.reject(error);
     },

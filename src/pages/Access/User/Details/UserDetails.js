@@ -17,14 +17,17 @@ export default {
   },
   data() {
     return {
-      name: '',
-      surname: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      userImage: '',
-      gender: 'nodefinido',
-      phone: '',
+      id: null,
+      name: null,
+      surname: null,
+      email: null,
+      password: null,
+      confirmPassword: null,
+      oldPassword: null,
+      prompt: false,
+      userImage: null,
+      gender: null,
+      phone: null,
       width: 230,
       height: 230,
     };
@@ -35,13 +38,12 @@ export default {
       this.height = 170;
     }
     const user = await userRepository.getProfile();
+    this.id = user.data.userid;
     this.name = user.data.username;
     this.surname = user.data.usersurname;
     this.email = user.data.useremail;
     this.userImage = user.data.userImage;
-    if (user.data.usergender) {
-      this.gender = user.data.usergender;
-    }
+    this.gender = user.data.usergender;
     this.phone = user.data.userphone;
   },
   validations: {
@@ -73,8 +75,22 @@ export default {
         && this.username !== ''
         && this.email !== ''
       ) {
-        console.log(this.userImage);
+        this.prompt = true;
       }
+    },
+    finalSubmitAfterDialog() {
+      userRepository.updateProfile({
+        userid: this.id,
+        username: this.name,
+        usersurname: this.surname,
+        useremail: this.email,
+        usergender: this.gender,
+        olduserpass: this.oldPassword,
+        userpass: this.password,
+        repeatuserpass: this.confirmPassword,
+        userImg: this.userImage,
+        userphonenumber: this.phone,
+      });
     },
     onImageSet(image) {
       this.userImage = image;

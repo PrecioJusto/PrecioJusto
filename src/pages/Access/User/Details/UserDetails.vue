@@ -54,7 +54,7 @@
               <div class="q-gutter-sm">
                 <q-radio v-model="gender" val="hombre" label="Hombre" />
                 <q-radio v-model="gender" val="mujer" label="Mujer" />
-                <q-radio v-model="gender" val="nodefinido" label="Prefiero no decirlo" />
+                <q-radio v-model="gender" val="otro" label="Otro" />
               </div>
               <q-input
                 dense
@@ -82,6 +82,20 @@
                 <q-btn label="Actualizar perfil" type="submit" color="primary" rounded/>
             </q-form>
         </div>
+        <q-dialog v-model="prompt" persistent>
+            <q-card style="min-width: 350px">
+                <q-card-section>
+                    <div class="text-h6">Introduce tu contraseña actual</div>
+                </q-card-section>
+                <q-card-section class="q-pt-none">
+                    <q-input type="password" dense v-model="oldPassword" autofocus @keyup.enter="prompt = false" />
+                </q-card-section>
+                <q-card-actions align="right" class="text-primary">
+                    <q-btn flat label="Cancelar" v-close-popup />
+                    <q-btn flat label="Actualizar" @click="finalSubmitAfterDialog" v-close-popup />
+                </q-card-actions>
+            </q-card>
+        </q-dialog>
     </q-page>
   </div>
 </template>
