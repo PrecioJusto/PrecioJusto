@@ -1,13 +1,23 @@
-// import Vue from 'vue';
+import Vue from 'vue';
 import axios from 'axios';
-import { Notify } from 'quasar';
-// import router from 'src/router';
+import GAuth from 'vue-google-oauth2';
+import { Notify, LocalStorage } from 'quasar';
+import { getMessageFromCode } from 'src/utils/responseMapper';
+
 // import router from 'src/router';
 
 const url = require('url');
 
+const options = {
+  clientId: '59668076614-icj2iqpani04tvkvk5met0aaif4tptg1.apps.googleusercontent.com',
+};
+
+Vue.use(GAuth, options);
+
+let notificationType = 'positive';
+
 const apiApplication = axios.create({
-  baseURL: 'http://ec2-18-220-122-6.us-east-2.compute.amazonaws.com:5000',
+  baseURL: 'https://preciojusto.app/api',
 });
 
 const apiProducts = axios.create({
@@ -27,7 +37,7 @@ export const instances = { apiApplication, apiProducts };
   instance.interceptors.request.use(
     (config) => {
       config.withCredentials = true;
-      config.headers.common.Authorization = localStorage.getItem('auth_token');
+      config.headers.common.Authorization = `Bearer ${LocalStorage.getItem('auth_token')}`;
       return config;
     },
     (error) => Promise.reject(error),
@@ -36,20 +46,15 @@ export const instances = { apiApplication, apiProducts };
   instance.interceptors.response.use(
     (response) => {
       const conf = url.parse(response.config.url);
-      if (conf.pathname === '/register') createNotification('positive', `Te has registrado correctamente con el correo ${response.data.useremail}`);
-
+      if (conf.pathname === '/register') createNotification(notificationType, `Te has registrado correctamente con el correo ${response.data.useremail}`);
       return response;
     },
     (error) => {
+      notificationType = 'negative';
       if (error && error.response) {
-        if (error.response.status === 401) {
-          // router.push('/login');
-        }
+        createNotification(notificationType, getMessageFromCode(error.response.data.messageError));
       } else {
-        Notify.create({
-          type: 'negative',
-          message: 'Error desconegut',
-        });
+        createNotification(notificationType, 'Error desconocido');
       }
       return Promise.reject(error);
     },

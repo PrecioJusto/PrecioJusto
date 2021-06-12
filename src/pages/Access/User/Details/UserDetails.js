@@ -8,13 +8,11 @@ import {
 } from 'vuelidate/lib/validators';
 
 import ProfileImage from 'src/components/ProfileImage/ProfileImage';
-import ProfileImageCropper from 'src/components/ProfileImage/ProfileImageCropper';
 
 export default {
   name: 'PageUserDetails',
   components: {
     ProfileImage,
-    ProfileImageCropper,
   },
   data() {
     return {
@@ -29,6 +27,9 @@ export default {
     };
   },
   created() {
+    // const user = this.$q.sessionStorage.getItem('user');
+    // checkUser();
+    // console.log(user);
   },
   validations: {
     name: { required, minLength: minLength(3), maxLength: maxLength(20) },

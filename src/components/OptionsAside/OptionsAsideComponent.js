@@ -1,3 +1,5 @@
+import { userRepository } from 'src/core/Areas/User/UserRepository.js';
+
 export default {
   name: 'OptionsAsideComponent',
   props: {
@@ -33,9 +35,20 @@ export default {
       ],
     };
   },
+  async created() {
+    const token = this.$q.localStorage.getItem('auth_token');
+    const user = this.$q.localStorage.getItem('user');
+    if (token === null) {
+      this.$router.push({ path: '/' });
+    } else if (user === null) {
+      const userProfile = await userRepository.getProfile();
+      this.$q.localStorage.set('user', userProfile.data);
+    }
+  },
   methods: {
     signOut() {
-
+      this.$q.localStorage.remove('auth_token');
+      this.$q.localStorage.remove('user');
     },
   },
 };

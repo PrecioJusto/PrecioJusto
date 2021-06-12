@@ -1,4 +1,5 @@
 import { userRepository } from 'src/core/Areas/User/UserRepository.js';
+
 import {
   required,
   sameAs,
@@ -9,7 +10,6 @@ import {
 
 export default {
   name: 'PageLogin',
-  components: {},
   data() {
     return {
       email: '',
@@ -40,22 +40,23 @@ export default {
         && this.email !== ''
       ) {
         const register = await userRepository.login({ useremail: this.email, userpass: this.password });
-        console.log(register);
         if (!register.data.messageError) {
-          this.$q.localStorage.set('auth_token', register.data.token);
-          this.$q.localStorage.set('user', register.data.user);
-          // this.$router.push({ path: '/' });
+          this.saveUserAndRedirect(register.data);
         }
       }
     },
-    redirectGoogle() {
-
+    saveUserAndRedirect(user) {
+      this.$q.localStorage.set('auth_token', user.token);
+      this.$q.localStorage.set('user', user.user);
+      this.$router.push({ path: '/' });
     },
-    redirectTwitter() {
-
-    },
-    redirectFacebook() {
-
+    async loginOAuth() {
+      await this.$gAuth.signIn().then(async (user) => {
+        const userFinal = await fetch(`https://preciojusto.app/api/usergoogle/${user.qc.access_token}`).then((x) => x.json());
+        if (userFinal.token) {
+          this.saveUserAndRedirect(userFinal);
+        }
+      });
     },
     vuelidateMsg(type) {
       if (type === 'password') {

@@ -2,7 +2,7 @@
     <div>
       <q-drawer show-if-above v-model="left" side="left" elevated>
         <q-scroll-area class="fit">
-          <q-list>
+          <q-list class="flex column">
             <template v-for="(menuItem, index) in menuList">
               <q-item
                 :key="index"
@@ -23,11 +23,6 @@
               </q-item>
               <q-separator :key="'sep' + index" v-if="menuItem.separator" />
             </template>
-            <div>
-              <q-item-section avatar>
-                  <p>tests</p>
-                </q-item-section>
-            </div>
           </q-list>
         </q-scroll-area>
       </q-drawer>

@@ -15,6 +15,10 @@ class UserRepository {
     return apiApplication.post('/login', data);
   }
 
+  loginGoogle(token) {
+    return apiApplication.post(`/usergoogle/${token}`);
+  }
+
   updateProfile(data) {
     return apiApplication.put('/profile', data);
   }
