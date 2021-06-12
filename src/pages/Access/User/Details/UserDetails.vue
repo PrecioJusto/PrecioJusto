@@ -7,6 +7,9 @@
               id="formIn"
               @submit="onSubmit"
               class="q-gutter-md">
+
+              <ProfileImage/>
+
               <q-input
                 dense
                 v-model="name"

@@ -23,29 +23,10 @@
         </span>
       </span>
     </div>
-    <base-modal
-      :show="showCropperModal"
-      class="image-cropper-modal"
-      :width="700"
-      @close="closeCropper"
-      @show-content="showCropper = true"
-    >
-      <profile-image-cropper
-        v-if="showCropper"
-        :src="imageToCropData"
-        :crop-width="width"
-        :crop-height="height"
-        @crop="onCrop"
-      />
-    </base-modal>
   </div>
 </template>
 <script>
-import ProfileImageCropper from './ProfileImageCropper.vue';
-import BaseModal from './BaseModal.vue';
-
 export default {
-  components: { ProfileImageCropper, BaseModal },
   name: 'ProfileImage',
   props: {
     value: {
@@ -55,12 +36,12 @@ export default {
 
     width: {
       type: Number,
-      default: 300,
+      default: 200,
     },
 
     height: {
       type: Number,
-      default: 300,
+      default: 200,
     },
 
     crop: {
@@ -77,7 +58,6 @@ export default {
       showCropper: false,
     };
   },
-
   methods: {
     chooseImage() {
       this.$refs.fileInput.click();
@@ -99,18 +79,6 @@ export default {
         };
         reader.readAsDataURL(files[0]);
       }
-    },
-
-    onCrop(imageData) {
-      this.imagePreviewData = imageData;
-      this.$emit('input', imageData);
-      this.closeCropper();
-    },
-
-    closeCropper() {
-      this.showCropperModal = false;
-      this.showCropper = false;
-      this.$refs.fileInput.value = '';
     },
   },
 };
