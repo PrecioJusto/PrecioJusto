@@ -7,7 +7,6 @@
               <q-item
                 :key="index"
                 clickable
-                :active="menuItem.label === 'Outbox'"
                 v-ripple
               >
                 <q-item-section avatar>

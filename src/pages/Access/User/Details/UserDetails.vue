@@ -7,9 +7,7 @@
               id="formIn"
               @submit="onSubmit"
               class="q-gutter-md">
-
-              <ProfileImage/>
-
+              <profile-image :value="userImage" :width="width" :height="height" v-on:input="onImageSet"></profile-image>
               <q-input
                 dense
                 v-model="name"

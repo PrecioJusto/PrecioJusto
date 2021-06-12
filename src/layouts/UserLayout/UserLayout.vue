@@ -1,5 +1,5 @@
 <template>
-<q-layout view="hHh lpR fff">
+<q-layout view="hHh LpR fff">
     <!-- DESKTOP HEADER -->
     <q-header
       id="mainLayoutHeader"

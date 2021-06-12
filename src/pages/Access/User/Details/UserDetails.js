@@ -8,6 +8,7 @@ import {
 } from 'vuelidate/lib/validators';
 
 import ProfileImage from 'src/components/ProfileImage/ProfileImage';
+import { userRepository } from 'src/core/Areas/User/UserRepository';
 
 export default {
   name: 'PageUserDetails',
@@ -24,19 +25,30 @@ export default {
       userImage: '',
       gender: 'nodefinido',
       phone: '',
+      width: 230,
+      height: 230,
     };
   },
-  created() {
-    // const user = this.$q.sessionStorage.getItem('user');
-    // checkUser();
-    // console.log(user);
+  async created() {
+    if (this.$q.platform.is.mobile) {
+      this.width = 170;
+      this.height = 170;
+    }
+    const user = await userRepository.getProfile();
+    this.name = user.data.username;
+    this.surname = user.data.usersurname;
+    this.email = user.data.useremail;
+    this.userImage = user.data.userImage;
+    if (user.data.usergender) {
+      this.gender = user.data.usergender;
+    }
+    this.phone = user.data.userphone;
   },
   validations: {
     name: { required, minLength: minLength(3), maxLength: maxLength(20) },
     surname: { required, minLength: minLength(3), maxLength: maxLength(100) },
     phone: { minLength: minLength(9), maxLength: maxLength(9), numeric },
     password: {
-      required,
       minLength: minLength(6),
       maxLength: maxLength(8),
       sameAs: sameAs(function checkPass() {
@@ -47,7 +59,6 @@ export default {
     },
     email: { required, email },
     confirmPassword: {
-      required,
       sameAsPassword: sameAs('password'),
     },
   },
@@ -61,20 +72,12 @@ export default {
         && !this.$v.confirmPassword.$error
         && this.username !== ''
         && this.email !== ''
-        && this.password !== ''
-        && this.confirmPassword !== ''
       ) {
-        const user = null;
-        /* userRepository.register();
-          const user = await registerUser(
-          this.username,
-          this.email,
-          this.password,
-        ); */
-        if (user.notifyType === 'SUCCESS') {
-          this.$router.push({ path: '/login' });
-        }
+        console.log(this.userImage);
       }
+    },
+    onImageSet(image) {
+      this.userImage = image;
     },
     vuelidateMsg(type) {
       if (type === 'name') {
