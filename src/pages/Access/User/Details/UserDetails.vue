@@ -52,16 +52,16 @@
 
               <p>Género:</p>
               <div class="q-gutter-sm">
-                <q-radio v-model="gender" val="hombre" label="Hombre" />
-                <q-radio v-model="gender" val="mujer" label="Mujer" />
-                <q-radio v-model="gender" val="otro" label="Otro" />
+                <q-radio v-model="gender" val="MASCULINO" label="Masculino" />
+                <q-radio v-model="gender" val="FEMENINO" label="Femenino" />
+                <q-radio v-model="gender" val="OTRO" label="Otro" />
               </div>
               <q-input
                 dense
                 type="password"
                 v-model="password"
                 label="Nueva Contraseña"
-                hint="Debe contener 1 letra mayuscula y 1 un número"
+                hint="Debe contener 1 mayuscula, 1 carácter especial y 1 número."
                 @blur="$v.password.$touch"
                 :error="$v.password.$error"
                 :error-message="vuelidateMsg('password')"

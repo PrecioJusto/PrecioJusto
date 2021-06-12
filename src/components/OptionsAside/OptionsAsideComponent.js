@@ -27,6 +27,18 @@ export default {
           route: '/user/products',
         },
         {
+          label: 'Sobre Nosotros',
+          icon: 'las la-info-circle',
+          separator: true,
+          route: '/about',
+        },
+        {
+          label: 'Contactanos',
+          icon: 'las la-hashtag',
+          separator: true,
+          route: '/contact',
+        },
+        {
           label: 'Cerrar sesión',
           icon: 'las la-sign-out-alt',
           separator: true,
@@ -49,6 +61,7 @@ export default {
     signOut() {
       this.$q.localStorage.remove('auth_token');
       this.$q.localStorage.remove('user');
+      this.$router.push({ path: '/' });
     },
   },
 };

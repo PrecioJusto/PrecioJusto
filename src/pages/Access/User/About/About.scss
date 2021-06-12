@@ -1,0 +1,37 @@
+.desktop {
+    #center {
+        width: 50%;
+        margin: auto;
+        h1 {
+            font-size: 310%;
+            text-align: center;
+        }
+        h2 {
+            font-size: 200%;
+        }
+        p {
+            margin-top: 10px;
+            font-size: 110%;
+        }   
+    }
+}
+
+#center {
+    
+}
+
+
+.mobile {
+    #center {
+        width: 90%;
+        margin: 5%;
+        h1 {
+            font-size: 23px;
+            text-align: center;
+        }
+        p {
+            margin-top: 12px;
+            font-size: 110%;
+        }
+    }
+}

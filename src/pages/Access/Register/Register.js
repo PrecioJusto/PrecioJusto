@@ -79,8 +79,8 @@ export default {
         if (!this.$v.password.sameAs) {
           return 'La contraseña no es valida, debe contener 1 mayuscula, 1 carácter especial y 1 número.';
         }
-        if (!this.$v.password.minLength) { return 'La contraseña no es valida.La longitud minima es de 8 caracteres.'; }
-        return 'La contraseña no es valida.La longitud máxima es de 20 caracteres.';
+        if (!this.$v.password.minLength) { return 'La contraseña no es valida. La longitud minima es de 8 caracteres.'; }
+        return 'La contraseña no es valida. La longitud máxima es de 20 caracteres.';
       }
       if (type === 'confirmPassword') {
         if (!this.$v.confirmPassword.required) return 'Campo requerido.';

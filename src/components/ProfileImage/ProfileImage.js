@@ -1,3 +1,5 @@
+import { userRepository } from 'src/core/Areas/User/UserRepository';
+
 export default {
   name: 'ProfileImage',
   props: {
@@ -19,6 +21,13 @@ export default {
     return {
       imagePreviewData: this.value,
     };
+  },
+  async created() {
+    const user = await userRepository.getProfile();
+    const data = user.data.userImage.usimimage;
+    // eslint-disable-next-line no-buffer-constructor
+    const buff = new Buffer(data, 'base64');
+    this.imagePreviewData = buff.toString('ascii');
   },
   methods: {
     chooseImage() {

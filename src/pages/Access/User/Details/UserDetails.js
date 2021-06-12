@@ -24,10 +24,10 @@ export default {
       password: null,
       confirmPassword: null,
       oldPassword: null,
-      prompt: false,
       userImage: null,
       gender: null,
       phone: null,
+      prompt: false,
       width: 230,
       height: 230,
     };
@@ -42,19 +42,22 @@ export default {
     this.name = user.data.username;
     this.surname = user.data.usersurname;
     this.email = user.data.useremail;
-    this.userImage = user.data.userImage;
+    const data = user.data.userImage.usimimage;
+    // eslint-disable-next-line no-buffer-constructor
+    const buff = new Buffer(data, 'base64');
+    this.userImage = buff.toString('ascii');
     this.gender = user.data.usergender;
-    this.phone = user.data.userphone;
+    this.phone = user.data.userphonenumber;
   },
   validations: {
     name: { required, minLength: minLength(3), maxLength: maxLength(20) },
     surname: { required, minLength: minLength(3), maxLength: maxLength(100) },
     phone: { minLength: minLength(9), maxLength: maxLength(9), numeric },
     password: {
-      minLength: minLength(6),
-      maxLength: maxLength(8),
+      minLength: minLength(8),
+      maxLength: maxLength(20),
       sameAs: sameAs(function checkPass() {
-        const matcher = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])/g;
+        const matcher = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
         if (matcher.test(this.password)) return this.password;
         return false;
       }),
@@ -78,8 +81,8 @@ export default {
         this.prompt = true;
       }
     },
-    finalSubmitAfterDialog() {
-      userRepository.updateProfile({
+    async finalSubmitAfterDialog() {
+      const updatedUser = await userRepository.updateProfile({
         userid: this.id,
         username: this.name,
         usersurname: this.surname,
@@ -87,10 +90,12 @@ export default {
         usergender: this.gender,
         olduserpass: this.oldPassword,
         userpass: this.password,
-        repeatuserpass: this.confirmPassword,
-        userImg: this.userImage,
+        userpassrepeat: this.confirmPassword,
+        userImage: this.userImage,
         userphonenumber: this.phone,
+        usernative: null,
       });
+      console.log(updatedUser);
     },
     onImageSet(image) {
       this.userImage = image;
@@ -109,10 +114,10 @@ export default {
       if (type === 'password') {
         if (!this.$v.password.required) return 'Campo requerido.';
         if (!this.$v.password.sameAs) {
-          return 'La contraseña no es valida, debe contener una mayuscula 1 y 1 número.';
+          return 'La contraseña no es valida, debe contener 1 mayuscula, 1 carácter especial y 1 número.';
         }
-        if (!this.$v.password.minLength) { return 'La contraseña no es valida.La longitud minima es de 6 caracteres.'; }
-        return 'La contraseña no es valida.La longitud máxima es de 8 caracteres.';
+        if (!this.$v.password.minLength) { return 'La contraseña no es valida. La longitud minima es de 8 caracteres.'; }
+        return 'La contraseña no es valida. La longitud máxima es de 20 caracteres.';
       }
       if (type === 'confirmPassword') {
         if (!this.$v.confirmPassword.required) return 'Campo requerido.';
