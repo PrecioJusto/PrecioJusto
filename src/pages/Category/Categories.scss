@@ -1,0 +1,21 @@
+#categoriesContainer {
+    max-width: 1000px;
+    margin: auto;
+}
+h2 {
+font-size: 4em;
+}
+
+@media only screen and (max-width: 450px) {    
+    #categoriesContainer {
+        width: 100% !important;
+        margin: auto;
+        margin-bottom: 15px;
+    }
+}
+    
+#searchBarContainer {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 15px;
+}

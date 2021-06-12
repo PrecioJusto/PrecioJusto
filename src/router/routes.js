@@ -27,7 +27,16 @@ const routes = [
       },
     ],
   },
-
+  {
+    path: '/categorias',
+    component: () => import('src/layouts/MainLayout/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Category/Categories.vue'),
+      },
+    ],
+  },
   // Always leave this as last one,
   // but you can also remove it
   {
