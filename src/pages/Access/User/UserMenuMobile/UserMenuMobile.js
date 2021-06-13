@@ -1,10 +1,7 @@
 export default {
-  name: 'OptionsAsideComponent',
-  props: {
-  },
+  name: 'PageAboutUs',
   data() {
     return {
-      left: false,
       menuList: [
         {
           label: 'Mis datos', icon: 'las la-id-card', separator: true, route: '/user',
@@ -44,6 +41,8 @@ export default {
         },
       ],
     };
+  },
+  created() {
   },
   methods: {
     signOut() {

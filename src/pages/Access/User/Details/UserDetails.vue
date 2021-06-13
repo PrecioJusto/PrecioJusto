@@ -29,6 +29,7 @@
                 </q-input>
 
               <q-input
+               v-if="usernative"
                 dense
                 type="email"
                 v-model="email"
