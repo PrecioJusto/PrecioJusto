@@ -16,6 +16,7 @@ export default {
     };
   },
   created() {
+    console.log(this.product);
     this.skeleton = false;
     this.productName = this.product.name;
     this.productPrice = this.product.price;

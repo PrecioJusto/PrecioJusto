@@ -5,7 +5,7 @@
 
 .desktop {
     .q-toolbar {
-        padding: 5px 100px;
+        padding: 5px 20px;
     }
     
     .ul-align-right {
@@ -16,10 +16,8 @@
     }
 
     .menu {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
+        margin: auto;
+        padding: 0 20px;
     }
 }
 

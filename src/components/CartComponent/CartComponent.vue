@@ -16,15 +16,22 @@
                   class="rounded-borders"
                /-->
             </q-item-section>
-            <q-item-section class="clickable" cursor-pointer clickable v-ripple :to="`/producto/:`+ product.prodid" exact>
+            <q-item-section class="clickable" @click="redirect(product.prodid)" cursor-pointer clickable v-ripple>
                <q-item-label>{{ product.prodname }}</q-item-label>
                <q-item-label caption>{{ product.brand.branname }}</q-item-label>
-               <q-item-label>Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+               <!--q-item-label>
+                  <div class="add-to-cart-wrapper q-ml-xl">
+                    <q-btn outline  v-if="cartCounter < 1" disable unelevated color="primary" icon="las la-minus" class="add-product"/>
+                    <q-btn outline  v-else @click="cartCounter--" unelevated color="primary" icon="las la-minus" class="add-product"/>
+                    <div class="counter">{{ cartCounter }}</div>
+                    <q-btn outline @click="cartCounter++" unelevated color="primary" icon="las la-plus" class="add-product"/>
+                  </div>
+               </q-item-label-->
             </q-item-section>
 
             <q-item-section side >
-               <q-icon @click="deleteProduct" name="las la-times" />
-               <p></p>
+               <q-icon class="clickable deleteIcon" @click="deleteProduct" name="las la-times" />
+               <p class="product-price">3.99€</p>
             </q-item-section>
          </q-item>
          <q-separator spaced inset="item" />

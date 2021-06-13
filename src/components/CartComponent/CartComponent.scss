@@ -24,6 +24,14 @@ h3 {
     font-size: 40pt;
 }
 
+.deleteIcon {
+    font-size: 15pt;
+}
+
+.product-price {
+    font-size: 13pt;
+}
+
 @media (max-width: 1200px) {
     .wrapper {
         width: 80%;
@@ -38,7 +46,7 @@ h3 {
 }
 
 @media (max-width: 600px) {
-    h3 {
-        text-align: center;
+    .title-wrapper {
+        justify-content: center;
     }
 }

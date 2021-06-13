@@ -19,7 +19,13 @@
           <SearchBar />
         </div>
         <div class="col-3 menu">
-          <MenuBar />
+         <q-btn-group outline spread>
+            <q-btn no-caps size="md" outline label="Inicio" />
+            <q-btn no-caps size="md" outline label="Explora" />
+            <q-btn no-caps size="md" outline label="Favoritos" />
+            <q-btn no-caps size="md" outline label="Carrito" />
+            <q-btn no-caps size="md" outline label="Cuenta" />
+          </q-btn-group>
         </div>
       </q-toolbar>
     </q-header>

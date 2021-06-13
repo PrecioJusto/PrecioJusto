@@ -7,7 +7,7 @@ import {
   numeric,
 } from 'vuelidate/lib/validators';
 
-import ProfileImage from 'src/components/ProfileImage/ProfileImage';
+import ProfileImage from 'src/components/ProfileImage/ProfileImage.vue';
 import { userRepository } from 'src/core/Areas/User/UserRepository';
 
 export default {

@@ -9,7 +9,7 @@ import getMessageFromCode from 'src/utils/responseMapper';
 const url = require('url');
 
 const options = {
-  clientId: '59668076614-icj2iqpani04tvkvk5met0aaif4tptg1.apps.googleusercontent.com',
+  clientId: '199037206764-oudsdaqhau4s38u03cs9eiuui332fm8f.apps.googleusercontent.com',
 };
 
 Vue.use(GAuth, options);
@@ -50,7 +50,7 @@ export const instances = { apiApplication, apiProducts };
     (error) => {
       if (error && error.response && error.response.data.messageError) {
         createNotification('negative', getMessageFromCode(error.response.data.messageError));
-      } else {
+      } else if (error.response.status !== 401) {
         createNotification('negative', 'Error desconocido');
       }
       return Promise.reject(error);

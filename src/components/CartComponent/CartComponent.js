@@ -136,10 +136,18 @@ export default {
         },
       },
     ];
+
+    // this.products = this.products.map(prod => {
+    // pocesar productos para añadirle la foto y el precio correspondientes
+    // });
   },
   methods: {
     deleteProduct() {
       console.log('samuel');
+    },
+
+    redirect(id) {
+      this.$router.push(`/producto/${id}`);
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
 <div class="wrapper">
-    hola
+    <ProductListComponent :products="products" />
 </div>
 </template>
 
