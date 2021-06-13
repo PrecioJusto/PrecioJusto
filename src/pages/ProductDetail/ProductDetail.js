@@ -17,6 +17,7 @@ export default {
       tableData: [],
       tableLoading: true,
       supermarketImages: [],
+      isFavourite: false,
     };
   },
   async mounted() {
@@ -95,6 +96,11 @@ export default {
 
       this.tableData = this.tableData.sort((a, b) => a.suprprice - b.suprprice);
       this.tableLoading = false;
+    },
+
+    favourite() {
+      // añadir a favoritos
+      this.isFavourite = true;
     },
 
     formatPrice(cents) {

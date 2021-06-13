@@ -4,7 +4,8 @@
         <div class="image-wrapper">
             <q-btn v-if="$q.platform.is.mobile" flat class="go-back-btn" round icon="las la-angle-left" @click="$router.go(-1)" />
             <img class="product-image" :src="productImg" :alt="product.name">
-            <q-btn class="favourite" push color="red" round icon="las la-heart" />
+            <q-btn v-if="isFavourite" @click="favourite" class="favourite" push color="red" round icon="las la-heart" />
+            <q-btn v-else @click="favourite" class="favourite" push color="red" round icon="lar la-heart" />
         </div>
         <div class="product-info">
             <div class="q-mb-md">

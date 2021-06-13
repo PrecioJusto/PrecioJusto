@@ -20,19 +20,19 @@ export default {
   },
   async created() {
     const destacadosProdResp = await productRepository.getProductsOrderdedByViews(0);
-    const categoriesRespPromise = await productRepository.getCategories();
-    const offerProdRespPromise = await productRepository.getProductsWithOfferOrderByPercentage(0);
-    console.log(offerProdRespPromise);
+    // const categoriesRespPromise = await productRepository.getCategories();
+    const offerProdRespPromise = await productRepository.getProductsWithOfferOrderByPercentage();
 
-    this.featuredProds = this.productExtractor(destacadosProdResp);
-    this.offerProducts = this.productExtractor(offerProdRespPromise);
-    console.log(categoriesRespPromise);
+    const cleanedDestacados = this.productExtractor(destacadosProdResp.data);
+    const cleanedOffers = this.productExtractor(offerProdRespPromise.data);
 
     if (this.$q.platform.is.desktop) {
-      this.offerProducts = _.chunk(Object.values(this.rawProds), 5);
+      this.offerProducts = _.chunk(Object.values(cleanedOffers), 5);
+      this.featuredProds = _.chunk(Object.values(cleanedDestacados), 5);
       this.categories = _.chunk(Object.values(this.rawCategories), 3);
     } else {
-      this.offerProducts = _.chunk(Object.values(this.rawProds), 2);
+      this.offerProducts = _.chunk(Object.values(cleanedOffers), 2);
+      this.featuredProds = _.chunk(Object.values(cleanedDestacados), 2);
       this.categories = _.chunk(Object.values(this.rawCategories), 1);
     }
   },
@@ -59,6 +59,7 @@ export default {
     },
 
     productExtractor(products) {
+      console.log(products);
       const filteringVoid = products.filter((prod) => prod.supermarketProducts.length > 0);
 
       return filteringVoid.map((prod) => {
@@ -89,6 +90,11 @@ export default {
           brand,
         };
       });
+    },
+
+    formatPrice(cents) {
+      const price = cents / 100;
+      return price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
     },
   },
 };
