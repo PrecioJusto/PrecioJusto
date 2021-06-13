@@ -1,4 +1,5 @@
-// import { userRepository } from 'src/core/Areas/User/UserRepository.js';
+import { userRepository } from 'src/core/Areas/User/UserRepository.js';
+
 import {
   required,
   sameAs,
@@ -9,7 +10,6 @@ import {
 
 export default {
   name: 'PageLogin',
-  components: {},
   data() {
     return {
       email: '',
@@ -21,10 +21,10 @@ export default {
   validations: {
     password: {
       required,
-      minLength: minLength(6),
-      maxLength: maxLength(8),
+      minLength: minLength(8),
+      maxLength: maxLength(20),
       sameAs: sameAs(function checkPass() {
-        const matcher = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])/g;
+        const matcher = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
         if (matcher.test(this.password)) return this.password;
         return false;
       }),
@@ -33,23 +33,30 @@ export default {
   },
   methods: {
     async onSubmit() {
-      /* if (
+      if (
         !this.$v.password.$error
         && !this.$v.email.$error
-        && this.password != ''
-        && this.email != ''
+        && this.password !== ''
+        && this.email !== ''
       ) {
-        userRepository.login()
-        const token = await loginUser(this.email, this.password);
-        this.saveUser(token);
-      } */
+        const register = await userRepository.login({ useremail: this.email, userpass: this.password });
+        if (!register.data.messageError) {
+          this.saveUserAndRedirect(register.data);
+        }
+      }
     },
-    async saveUser() {
-      /* if (token) {
-        localStorage.setItem('logintoken', JSON.stringify(token));
-        localStorage.setItem('userdata', JSON.stringify(await getUserData()));
-        this.$router.push('/admin/partitures');
-      } */
+    saveUserAndRedirect(user) {
+      this.$q.localStorage.set('auth_token', user.token);
+      this.$q.localStorage.set('user', user.user);
+      this.$router.push({ path: '/' });
+    },
+    async loginOAuth() {
+      await this.$gAuth.signIn().then(async (user) => {
+        const userFinal = await fetch(`https://preciojusto.app/api/usergoogle/${user.qc.access_token}`).then((x) => x.json());
+        if (userFinal.token) {
+          this.saveUserAndRedirect(userFinal);
+        }
+      });
     },
     vuelidateMsg(type) {
       if (type === 'password') {

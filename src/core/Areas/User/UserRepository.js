@@ -3,7 +3,6 @@ import { instances } from 'src/boot/axios';
 const { apiApplication } = instances;
 
 class UserRepository {
-
   getProfile() {
     return apiApplication.get('/profile');
   }
@@ -14,6 +13,10 @@ class UserRepository {
 
   login(data) {
     return apiApplication.post('/login', data);
+  }
+
+  loginGoogle(token) {
+    return apiApplication.post(`/usergoogle/${token}`);
   }
 
   updateProfile(data) {

@@ -1,14 +1,33 @@
+import Vue from 'vue';
 import axios from 'axios';
-import { Notify } from 'quasar';
-import router from 'src/router';
+import GAuth from 'vue-google-oauth2';
+import { Notify, LocalStorage } from 'quasar';
+import getMessageFromCode from 'src/utils/responseMapper';
+
+// import router from 'src/router';
+
+const url = require('url');
+
+const options = {
+  clientId: '59668076614-icj2iqpani04tvkvk5met0aaif4tptg1.apps.googleusercontent.com',
+};
+
+Vue.use(GAuth, options);
 
 const apiApplication = axios.create({
-  url: 'http://server247.cfgs.esliceu.net',
+  baseURL: 'https://preciojusto.app/api',
 });
 
 const apiProducts = axios.create({
-  url: 'http://server247.cfgs.esliceu.net',
+  baseURL: 'http://preciojustoapp.z126.esliceu.tk:12650',
 });
+
+function createNotification(notifyType, msg) {
+  Notify.create({
+    type: notifyType,
+    message: msg,
+  });
+}
 
 export const instances = { apiApplication, apiProducts };
 
@@ -16,7 +35,7 @@ export const instances = { apiApplication, apiProducts };
   instance.interceptors.request.use(
     (config) => {
       config.withCredentials = true;
-      config.headers.common.Authorization = localStorage.getItem('auth_token');
+      config.headers.common.Authorization = `Bearer ${LocalStorage.getItem('auth_token')}`;
       return config;
     },
     (error) => Promise.reject(error),
@@ -24,29 +43,15 @@ export const instances = { apiApplication, apiProducts };
 
   instance.interceptors.response.use(
     (response) => {
-      if (JSON.stringify(response.data.notifyType)) {
-        Notify.create({
-          type: 'positive',
-          message: JSON.stringify(response.data.notifyMessage),
-        });
-      }
+      const conf = url.parse(response.config.url);
+      if (conf.pathname === '/register') createNotification('positive', `Te has registrado correctamente con el correo ${response.data.useremail}`);
       return response;
     },
     (error) => {
-      if (error && error.response && error.response.status === 401) {
-        if (JSON.stringify(error.response.data.notifyType)) {
-          Notify.create({
-            type: 'negative',
-            message: JSON.stringify(error.response.data.notifyMessage),
-          });
-        }
-
-        router.push('/login');
+      if (error && error.response && error.response.data.messageError) {
+        createNotification('negative', getMessageFromCode(error.response.data.messageError));
       } else {
-        Notify.create({
-          type: 'negative',
-          message: 'Error desconegut',
-        });
+        createNotification('negative', 'Error desconocido');
       }
       return Promise.reject(error);
     },
