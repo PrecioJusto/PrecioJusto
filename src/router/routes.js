@@ -30,6 +30,46 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/user',
+    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Access/User/Details/UserDetails.vue'),
+      },
+    ],
+  },
+  {
+    path: '/user/settings/notifications',
+    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue'),
+      },
+    ],
+  },
+  {
+    path: '/contact',
+    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Access/User/Contact/Contact.vue'),
+      },
+    ],
+  },
+  {
+    path: '/about',
+    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Access/User/About/About.vue'),
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

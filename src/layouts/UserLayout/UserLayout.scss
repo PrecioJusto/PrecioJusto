@@ -1,0 +1,26 @@
+* {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.desktop {
+    .q-toolbar {
+        padding: 5px 100px;
+    }
+    
+    .ul-align-right {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .menu {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.mobile {}
