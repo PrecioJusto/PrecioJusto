@@ -70,6 +70,16 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/user/mobile',
+    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue'),
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

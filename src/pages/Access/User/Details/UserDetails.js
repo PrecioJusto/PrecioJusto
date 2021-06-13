@@ -105,7 +105,17 @@ export default {
         userphonenumber: this.phone,
         usernative: null,
       });
-      console.log(updatedUser);
+      this.saveUpdatedUser(updatedUser.data);
+      this.$q.notify(
+        {
+          type: 'positive',
+          message: 'Información actualizada correctamente',
+        },
+      );
+    },
+    saveUpdatedUser(user) {
+      this.$q.localStorage.set('auth_token', user.token);
+      this.$q.localStorage.set('user', user.user);
     },
     onImageSet(image) {
       this.userImage = image;
