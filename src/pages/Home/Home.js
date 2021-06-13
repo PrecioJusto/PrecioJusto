@@ -10,29 +10,39 @@ export default {
   components: { SearchBar, ProductCard, CategoryCard },
   data() {
     return {
-      category: {},
       prodSlider: 0,
       catSlider: 0,
-      featuredProds: 0,
+      featuredSlider: 0,
+      featuredProds: [],
       offerProducts: [],
       categories: [],
+      rawFeatured: [],
+      rawOffers: [],
+      rawCategories: [],
     };
   },
   async created() {
     const destacadosProdResp = await productRepository.getProductsOrderdedByViews(0);
-    // const categoriesRespPromise = await productRepository.getCategories();
+    const categoriesRespPromise = await productRepository.getCategories();
     const offerProdRespPromise = await productRepository.getProductsWithOfferOrderByPercentage();
 
-    const cleanedDestacados = this.productExtractor(destacadosProdResp.data);
-    const cleanedOffers = this.productExtractor(offerProdRespPromise.data);
+    this.rawFeatured = this.productExtractor(destacadosProdResp.data);
+    this.rawOffers = this.productExtractor(offerProdRespPromise.data);
+    const categoriesData = categoriesRespPromise.data;
+    this.rawCategories = categoriesData.map((cat) => ({
+      name: this.formatCategoryName(cat.catename),
+      img: cat.cateimg,
+    }));
+
+    // tengo que terminar el ver todas!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     if (this.$q.platform.is.desktop) {
-      this.offerProducts = _.chunk(Object.values(cleanedOffers), 5);
-      this.featuredProds = _.chunk(Object.values(cleanedDestacados), 5);
+      this.offerProducts = _.chunk(Object.values(this.rawOffers), 5);
+      this.featuredProds = _.chunk(Object.values(this.rawFeatured), 5);
       this.categories = _.chunk(Object.values(this.rawCategories), 3);
     } else {
-      this.offerProducts = _.chunk(Object.values(cleanedOffers), 2);
-      this.featuredProds = _.chunk(Object.values(cleanedDestacados), 2);
+      this.offerProducts = _.chunk(Object.values(this.rawOffers), 2);
+      this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
       this.categories = _.chunk(Object.values(this.rawCategories), 1);
     }
   },
@@ -44,22 +54,25 @@ export default {
   methods: {
     changeProductsBatch() {
       if (this.$q.screen.width > 1350) {
-        this.offerProducts = _.chunk(Object.values(this.rawProds), 5);
+        this.offerProducts = _.chunk(Object.values(this.rawOffers), 5);
+        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
         this.categories = _.chunk(Object.values(this.rawCategories), 4);
       } else if (this.$q.screen.width > 1055 && this.$q.screen.width <= 1350) {
-        this.offerProducts = _.chunk(Object.values(this.rawProds), 4);
+        this.offerProducts = _.chunk(Object.values(this.rawOffers), 4);
+        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
         this.categories = _.chunk(Object.values(this.rawCategories), 3);
       } else if (this.$q.screen.width > 790 && this.$q.screen.width <= 1055) {
-        this.offerProducts = _.chunk(Object.values(this.rawProds), 3);
+        this.offerProducts = _.chunk(Object.values(this.rawOffers), 3);
+        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
         this.categories = _.chunk(Object.values(this.rawCategories), 2);
       } else if (this.$q.screen.width <= 790) {
         this.categories = _.chunk(Object.values(this.rawCategories), 1);
-        this.offerProducts = _.chunk(Object.values(this.rawProds), 2);
+        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
+        this.offerProducts = _.chunk(Object.values(this.rawOffers), 2);
       }
     },
 
     productExtractor(products) {
-      console.log(products);
       const filteringVoid = products.filter((prod) => prod.supermarketProducts.length > 0);
 
       return filteringVoid.map((prod) => {
@@ -95,6 +108,10 @@ export default {
     formatPrice(cents) {
       const price = cents / 100;
       return price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+    },
+
+    formatCategoryName(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1).replaceAll('_', ' ');
     },
   },
 };

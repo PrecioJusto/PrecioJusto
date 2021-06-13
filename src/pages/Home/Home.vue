@@ -63,7 +63,7 @@
             <small class="cursor-pointer">Ver todos</small>
           </div>
           <q-carousel
-            v-model="featuredProds"
+            v-model="featuredSlider"
             transition-prev="slide-right"
             transition-next="slide-left"
             swipeable
@@ -72,7 +72,7 @@
             arrows
             class="bg-none rounded-borders q-py-none q-my-md carousel-products"
           >
-            <q-carousel-slide v-for="(slide, idx) in offerProducts" :key="slide.name" :name="idx" class="column no-wrap q-py-none carousel-slide">
+            <q-carousel-slide v-for="(slide, idx) in featuredProds" :key="slide.name" :name="idx" class="column no-wrap q-py-none carousel-slide">
               <div class="row fit justify-start q-gutter-xs q-col-gutter no-wrap offer-slider q-py-none">
                 <ProductCard v-for="prod in slide" :key="prod.name" :product="prod" />
               </div>
