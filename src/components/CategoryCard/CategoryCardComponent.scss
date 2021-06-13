@@ -1,3 +1,14 @@
+//    const colors = ['green', 'red', 'blue', 'yellow', 'orange', 'purple'];
+$colorClasses : ("red" : rgb(253, 232, 228), "blue" : rgb(237, 248, 253), "green" : rgb(238, 248, 241), "yellow" : rgb(255, 248, 229), "orange": rgb(254, 247, 237), "purple" : rgb(244, 235, 248));
+
+@each $key, $value in $colorClasses {
+    .#{$key} {
+        background-color: $value;
+        border: 2px solid darken($value, 10%);
+    }
+  }
+  
+
 .product-info {
     text-align: center;
 }
@@ -12,7 +23,6 @@
         border-radius: 20px;
         border: none;
         word-wrap: break-word;
-        background-color: lighten($primary, 40%);
     }
 
     .category-img {
@@ -39,9 +49,7 @@
         height: 200px;
         width: 190px;
         border-radius: 20px;
-        border: 2px solid $primary;
         word-wrap: break-word;
-        background-color: lighten($primary, 40%);
     }
 
     .category-img {
@@ -73,9 +81,7 @@
             height: 170px;
             width: 170px;
             border-radius: 20px;
-            border: 2px solid $primary;
             word-wrap: break-word;
-            background-color: lighten($primary, 40%);
         }
         .category-img {
             object-fit: cover;
@@ -98,9 +104,7 @@
             height: 160px;
             width: 160px;
             border-radius: 20px;
-            border: 2px solid $primary;
             word-wrap: break-word;
-            background-color: lighten($primary, 40%);
         }
         .category-img {
             object-fit: cover;
@@ -123,9 +127,7 @@
             height: 150px;
             width: 150px;
             border-radius: 20px;
-            border: 2px solid $primary;
             word-wrap: break-word;
-            background-color: lighten($primary, 40%);
         }
         .category-img {
             object-fit: cover;
@@ -148,9 +150,7 @@
             height: 130px;
             width: 130px;
             border-radius: 20px;
-            border: 2px solid $primary;
             word-wrap: break-word;
-            background-color: lighten($primary, 40%);
         }
         .category-img {
             object-fit: cover;
@@ -173,9 +173,7 @@
             height: 123px;
             width: 123px;
             border-radius: 20px;
-            border: 2px solid $primary;
             word-wrap: break-word;
-            background-color: lighten($primary, 40%);
         }
         .category-img {
             object-fit: cover;

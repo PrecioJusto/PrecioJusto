@@ -13,16 +13,22 @@ export default {
   data() {
     return {
       categoryName: '',
-      categoryColor: '',
       categoryImg: '',
       cardMode: '',
+      color: '',
     };
   },
   created() {
     this.categoryName = this.category.name;
-    this.categoryColor = this.category.color;
     this.categoryImg = this.category.img;
     this.cardMode = (this.forHomePage) ? 'home-page' : 'explore-page';
+    this.color = this.category.colorClass;
+    console.log(this.color);
+  },
+  mounted() {
+    // const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    // console.log(randomColor);
+    // document.querySelector('#cardItem').style.backgroundColor = randomColor;
   },
   methods: {
     categoryDetail() {
