@@ -1,0 +1,40 @@
+.desktop {
+    #center {
+        width: 50%;
+        margin: auto;
+        h1 {
+            font-size: 310%;
+            text-align: center;
+        }
+        h2 {
+            font-size: 200%;
+            color: $primary;
+        }
+        p {
+            margin-top: 10px;
+            font-size: 110%;
+        }   
+    }
+}
+
+
+.mobile {
+    #center {
+        width: 90%;
+        margin: 5%;
+        h1 {
+            font-size: 23px;
+            font-weight: bolder;
+            text-align: center;
+        }
+        h2 {
+            font-weight: bold;
+            color: $primary;
+            font-size: 18px;
+        }
+        p {
+            margin-top: 12px;
+            font-size: 100%;
+        }
+    }
+}

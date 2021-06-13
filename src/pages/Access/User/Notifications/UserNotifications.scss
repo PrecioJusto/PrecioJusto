@@ -1,0 +1,41 @@
+.desktop {
+    #center {
+        width: 50%;
+        margin: auto;
+        h1 {
+            font-size: 310%;
+            text-align: center;
+        }
+        p {
+            margin-top: 16px;
+            font-size: 110%;
+        }   
+    }
+}
+
+#center {
+    div {
+        display: flex;
+        justify-content: space-between;
+        span {
+            color: $primary;
+            font-weight: bold;
+        }
+    }
+}
+
+
+.mobile {
+    #center {
+        width: 90%;
+        margin: 5%;
+        h1 {
+            font-size: 31px;
+            text-align: center;
+        }
+        p {
+            margin-top: 12px;
+            font-size: 110%;
+        }
+    }
+}

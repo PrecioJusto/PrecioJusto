@@ -21,7 +21,7 @@ export default {
     };
   },
   created() {
-    productRepository.getProducts();
+    productRepository.getProductsOrderdedByViews(0);
     this.category = {
       name: 'Frash Fruits & Vegetables',
       color: 'red',

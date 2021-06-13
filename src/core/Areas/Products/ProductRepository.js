@@ -43,8 +43,12 @@ class ProductRepository {
     return apiProducts.get(`/pack/${paramsIds.packid}`);
   }
 
-  getProducts() {
-    return apiProducts.get('/products');
+  getProductsOrderdedByViews(page) {
+    return apiProducts.get(`/products/page/${page}`);
+  }
+
+  getProductsWithOfferOrderByPercentage(page) {
+    return apiProducts.get(`/products/page/offer/${page}`);
   }
 
   getProduct(paramsIds) {

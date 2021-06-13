@@ -1,32 +1,65 @@
-import { userRepository } from 'src/core/Areas/User/UserRepository.js';
-
 import {
   required,
   sameAs,
   email,
   minLength,
   maxLength,
+  numeric,
 } from 'vuelidate/lib/validators';
 
+import ProfileImage from 'src/components/ProfileImage/ProfileImage';
+import { userRepository } from 'src/core/Areas/User/UserRepository';
+
 export default {
-  name: 'PageRegister',
-  components: {},
+  name: 'PageUserDetails',
+  components: {
+    ProfileImage,
+  },
   data() {
     return {
-      name: '',
-      surname: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      id: null,
+      name: null,
+      surname: null,
+      email: null,
+      password: null,
+      confirmPassword: null,
+      oldPassword: null,
+      userImage: null,
+      gender: null,
+      phone: null,
+      usernative: null,
+      prompt: false,
+      width: 230,
+      height: 230,
     };
   },
-  created() {
+  async created() {
+    if (this.$q.platform.is.mobile) {
+      this.width = 170;
+      this.height = 170;
+    }
+    const user = await userRepository.getProfile();
+    this.id = user.data.userid;
+    this.name = user.data.username;
+    this.surname = user.data.usersurname;
+    this.email = user.data.useremail;
+    const data = user.data.userImage;
+    if (data != null) {
+      // eslint-disable-next-line no-buffer-constructor
+      const buff = new Buffer(data.usimimage, 'base64');
+      this.userImage = buff.toString('ascii');
+    } else {
+      this.userImage = '';
+    }
+    this.usernative = user.data.usernative;
+    this.gender = user.data.usergender;
+    this.phone = user.data.userphonenumber;
   },
   validations: {
     name: { required, minLength: minLength(3), maxLength: maxLength(20) },
     surname: { required, minLength: minLength(3), maxLength: maxLength(100) },
+    phone: { minLength: minLength(9), maxLength: maxLength(9), numeric },
     password: {
-      required,
       minLength: minLength(8),
       maxLength: maxLength(20),
       sameAs: sameAs(function checkPass() {
@@ -37,7 +70,6 @@ export default {
     },
     email: { required, email },
     confirmPassword: {
-      required,
       sameAsPassword: sameAs('password'),
     },
   },
@@ -49,19 +81,34 @@ export default {
         && !this.$v.email.$error
         && !this.$v.password.$error
         && !this.$v.confirmPassword.$error
-        && this.name !== ''
-        && this.surname !== ''
+        && this.username !== ''
         && this.email !== ''
-        && this.password !== ''
-        && this.confirmPassword !== ''
       ) {
-        const user = await userRepository.register({
-          username: this.name, usersurname: this.surname, useremail: this.email, userpass: this.password, userpassrepeat: this.confirmPassword,
-        });
-        if (user.data.email) {
-          this.$router.push({ path: '/login' });
+        if (this.usernative === false) {
+          this.finalSubmitAfterDialog();
+        } else {
+          this.prompt = true;
         }
       }
+    },
+    async finalSubmitAfterDialog() {
+      const updatedUser = await userRepository.updateProfile({
+        userid: this.id,
+        username: this.name,
+        usersurname: this.surname,
+        useremail: this.email,
+        usergender: this.gender,
+        olduserpass: this.oldPassword,
+        userpass: this.password,
+        userpassrepeat: this.confirmPassword,
+        userImage: this.userImage,
+        userphonenumber: this.phone,
+        usernative: null,
+      });
+      console.log(updatedUser);
+    },
+    onImageSet(image) {
+      this.userImage = image;
     },
     vuelidateMsg(type) {
       if (type === 'name') {
@@ -86,8 +133,12 @@ export default {
         if (!this.$v.confirmPassword.required) return 'Campo requerido.';
         if (!this.$v.confirmPassword.sameAs) return 'Las contraseñas no coinciden.';
       }
+      if (type === 'phone') {
+        if (!this.$v.phone.numeric) return 'Solo puede contener numeros.';
+        return 'El numero de telefono no es valido, debe de ser de 9 digitos.';
+      }
       if (!this.$v.email.required) return 'Campo requerido.';
-      return 'El email no es valido. introduce un nuevo Email';
+      return 'El email no es valido. introduce un nuevo Email.';
     },
   },
 };

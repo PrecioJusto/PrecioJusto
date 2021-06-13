@@ -1,12 +1,13 @@
 <template>
   <div>
-    <q-page class="flex row">
-      <div id="center">
-          <div id="form-container">
-            <q-form
+    <q-page>
+        <div id="center">
+          <h1>Mis datos personales</h1>
+              <q-form
               id="formIn"
               @submit="onSubmit"
               class="q-gutter-md">
+              <profile-image :value="userImage" :width="width" :height="height" v-on:input="onImageSet"></profile-image>
               <q-input
                 dense
                 v-model="name"
@@ -38,12 +39,30 @@
                 ><template v-slot:prepend><q-icon name="las la-at" /></template>
                 </q-input>
 
+                <q-input
+                dense
+                type="tel"
+                v-model="phone"
+                label="Teléfono"
+                @blur="$v.phone.$touch"
+                :error="$v.phone.$error"
+                :error-message="vuelidateMsg('phone')"
+                ><template v-slot:prepend><q-icon name="las la-mobile" /></template>
+                </q-input>
+
+              <p>Género:</p>
+              <div class="q-gutter-sm">
+                <q-radio v-model="gender" val="MASCULINO" label="Masculino" />
+                <q-radio v-model="gender" val="FEMENINO" label="Femenino" />
+                <q-radio v-model="gender" val="OTRO" label="Otro" />
+              </div>
               <q-input
+              v-if="usernative"
                 dense
                 type="password"
                 v-model="password"
-                label="Contraseña"
-                hint="Debe contener 1 letra mayuscula y 1 un número"
+                label="Nueva Contraseña"
+                hint="Debe contener 1 mayuscula, 1 carácter especial y 1 número."
                 @blur="$v.password.$touch"
                 :error="$v.password.$error"
                 :error-message="vuelidateMsg('password')"
@@ -51,6 +70,7 @@
                 </q-input>
 
               <q-input
+               v-if="usernative"
                 dense
                 type="password"
                 v-model="confirmPassword"
@@ -61,16 +81,26 @@
                 :error-message="vuelidateMsg('confirmPassword')"
               ><template v-slot:prepend><q-icon name="las la-lock" /></template>
               </q-input>
-                <q-btn label="Registrate" type="submit" color="primary" rounded/>
+                <q-btn label="Actualizar perfil" type="submit" color="primary" rounded/>
             </q-form>
-            <div id="redirection">
-              ¿Ya tienes una de cuenta? <span  @click="$router.push('/login')">Entra</span>
-            </div>
-          </div>
-      </div>
+        </div>
+        <q-dialog v-model="prompt" persistent>
+            <q-card style="min-width: 350px">
+                <q-card-section>
+                    <div class="text-h6">Introduce tu contraseña actual</div>
+                </q-card-section>
+                <q-card-section class="q-pt-none">
+                    <q-input type="password" dense v-model="oldPassword" autofocus @keyup.enter="prompt = false" />
+                </q-card-section>
+                <q-card-actions align="right" class="text-primary">
+                    <q-btn flat label="Cancelar" v-close-popup />
+                    <q-btn flat label="Actualizar" @click="finalSubmitAfterDialog" v-close-popup />
+                </q-card-actions>
+            </q-card>
+        </q-dialog>
     </q-page>
   </div>
 </template>
 
-<script src='./Register.js'></script>
-<style scoped lang="scss" src="./Register.scss"></style>
+<script src='./UserDetails.js'></script>
+<style scoped lang="scss" src="./UserDetails.scss"></style>
