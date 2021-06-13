@@ -27,6 +27,7 @@ export default {
       userImage: null,
       gender: null,
       phone: null,
+      usernative: null,
       prompt: false,
       width: 230,
       height: 230,
@@ -42,10 +43,15 @@ export default {
     this.name = user.data.username;
     this.surname = user.data.usersurname;
     this.email = user.data.useremail;
-    const data = user.data.userImage.usimimage;
-    // eslint-disable-next-line no-buffer-constructor
-    const buff = new Buffer(data, 'base64');
-    this.userImage = buff.toString('ascii');
+    const data = user.data.userImage;
+    if (data != null) {
+      // eslint-disable-next-line no-buffer-constructor
+      const buff = new Buffer(data.usimimage, 'base64');
+      this.userImage = buff.toString('ascii');
+    } else {
+      this.userImage = '';
+    }
+    this.usernative = user.data.usernative;
     this.gender = user.data.usergender;
     this.phone = user.data.userphonenumber;
   },
@@ -78,7 +84,11 @@ export default {
         && this.username !== ''
         && this.email !== ''
       ) {
-        this.prompt = true;
+        if (this.usernative === false) {
+          this.finalSubmitAfterDialog();
+        } else {
+          this.prompt = true;
+        }
       }
     },
     async finalSubmitAfterDialog() {

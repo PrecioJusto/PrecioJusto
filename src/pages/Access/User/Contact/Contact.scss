@@ -14,7 +14,19 @@
 }
 
 #center {
-    
+    .container {
+        display: flex;
+        flex-direction: column;
+        div {
+            display: flex;
+            align-items: center;
+            img {
+                margin: 15px;
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
 }
 
 

@@ -24,10 +24,14 @@ export default {
   },
   async created() {
     const user = await userRepository.getProfile();
-    const data = user.data.userImage.usimimage;
-    // eslint-disable-next-line no-buffer-constructor
-    const buff = new Buffer(data, 'base64');
-    this.imagePreviewData = buff.toString('ascii');
+    const data = user.data.userImage;
+    if (data != null) {
+      // eslint-disable-next-line no-buffer-constructor
+      const buff = new Buffer(data.usimimage, 'base64');
+      this.imagePreviewData = buff.toString('ascii');
+    } else {
+      this.imagePreviewData = '';
+    }
   },
   methods: {
     chooseImage() {

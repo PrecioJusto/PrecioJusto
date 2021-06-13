@@ -57,6 +57,7 @@
                 <q-radio v-model="gender" val="OTRO" label="Otro" />
               </div>
               <q-input
+              v-if="usernative"
                 dense
                 type="password"
                 v-model="password"
@@ -69,6 +70,7 @@
                 </q-input>
 
               <q-input
+               v-if="usernative"
                 dense
                 type="password"
                 v-model="confirmPassword"
