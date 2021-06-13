@@ -1,26 +1,24 @@
-// import { productRepository } from 'src/core/Areas/Products/ProductRepository';
+import { userRepository } from 'src/core/Areas/User/UserRepository';
 
 export default {
   name: 'CartComponent',
-  props: {
-    isTemporal: {
-      type: Boolean,
-      required: true,
-    },
-  },
+  props: {},
   data() {
     return {
       products: [],
     };
   },
   async created() {
-    // if (this.isTemporal) {
-    //   // getting products from localStorage - temporal cart.
-    //   this.products = this.$q.localStorage.getItem('cart');
-    // } else {
-    //   // getting products from ddbb by cart id - saved cart.
-    //   this.products = await productRepository.getCart('id');
-    // }
+    let rawProducts = [];
+    if (this.$route.params.idcart) {
+      const shopid = this.$route.params.idcart;
+      console.log(shopid);
+      const resp = await userRepository.getShoppingCartById({ shopid });
+      console.log(resp);
+      rawProducts = resp.data;
+    } else {
+      rawProducts = this.$q.localStorage.getItem('cart');
+    }
 
     this.products = [
       {
@@ -137,9 +135,7 @@ export default {
       },
     ];
 
-    // this.products = this.products.map(prod => {
-    // pocesar productos para añadirle la foto y el precio correspondientes
-    // });
+    this.products = this.productExtractor(rawProducts);
   },
   methods: {
     deleteProduct() {
@@ -148,6 +144,39 @@ export default {
 
     redirect(id) {
       this.$router.push(`/producto/${id}`);
+    },
+
+    productExtractor(products) {
+      const filteringVoid = products.filter((prod) => prod.supermarketProducts.length > 0);
+
+      return filteringVoid.map((prod) => {
+        const id = prod.prodid;
+        const name = prod.prodname;
+        const rawPrice = prod.supermarketProducts.sort((a, b) => a.suprprice - b.suprprice)[0].suprprice;
+        const price = rawPrice ? this.formatPrice(rawPrice) : null;
+        const brand = prod.brand.branname;
+        let img = '';
+        let supermarketProduct;
+        // eslint-disable-next-line no-restricted-syntax
+        for (supermarketProduct of prod.supermarketProducts) {
+          if (supermarketProduct.supeid.supename === 'elcorteingles' || supermarketProduct.supeid.supename === 'hipercor') {
+            img = supermarketProduct.suprimg;
+            break;
+          }
+        }
+
+        if (img.length < 1) {
+          img = prod.supermarketProducts[0].suprimg;
+        }
+
+        return {
+          id,
+          name,
+          price,
+          img,
+          brand,
+        };
+      });
     },
   },
 };

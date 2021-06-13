@@ -8,13 +8,13 @@
          <div v-for="product in products" :key="product.id" >
             <q-item>
             <q-item-section avatar>
-               <!--q-img
+               <q-img
                   :src="url"
                   style="width: 100px"
                   :ratio="1"
                   basic
                   class="rounded-borders"
-               /-->
+               />
             </q-item-section>
             <q-item-section class="clickable" @click="redirect(product.prodid)" cursor-pointer clickable v-ripple>
                <q-item-label>{{ product.prodname }}</q-item-label>

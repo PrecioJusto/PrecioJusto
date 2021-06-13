@@ -48,7 +48,7 @@ class ProductRepository {
   }
 
   getProductsWithOfferOrderByPercentage(page) {
-    return apiProducts.get(`/products/page/offer/${page}`);
+    return apiProducts.get(`/products/offer/${page}`);
   }
 
   getProduct(paramsIds) {

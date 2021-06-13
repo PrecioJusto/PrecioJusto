@@ -1,18 +1,17 @@
 .wrapper {
-    width: 60%;
     margin: auto;
-    background-color: red;
+    padding: 0 100px;
 }
 
 @media (max-width: 1200px) {
     .wrapper {
-        width: 80%;
+        padding: 0 50px;
     }
 }
 
 @media (max-width: 1000px) {
     .wrapper {
-        width: 100%;
+        padding: 0 5px;
     }
 }
 

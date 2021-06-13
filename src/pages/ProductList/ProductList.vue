@@ -1,6 +1,7 @@
 <template>
 <div class="wrapper">
-    <ProductListComponent :products="products" />
+    <h3>{{ categoryName }}</h3>
+    <ProductListComponent v-if="products.length > 0" :products="products" />
 </div>
 </template>
 

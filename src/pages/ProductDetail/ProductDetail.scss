@@ -91,7 +91,7 @@
 }
 
 .product-image {
-    max-width: 400px;
+    height: 300px;
 }
 
 .price {
@@ -141,6 +141,7 @@
 
     .product-info {
         padding: 0 10px;
+        margin-top: 40px;
     }
 
     .product-name {
@@ -154,5 +155,9 @@
 
     .favourite {
         right: 10px;
+    }
+
+    .product-image {
+        height: 250px;
     }
 }

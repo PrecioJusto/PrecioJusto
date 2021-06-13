@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-undef */
-// import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
+import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
 
 export default {
   name: 'ProductDetail',
@@ -21,45 +21,9 @@ export default {
   },
   async mounted() {
     if (this.$route.params.idproduct) {
-      // this.product = await productRepository.product({ prodid: this.$route.params.idproduct });
-      this.product = {
-        prodid: 333,
-        prodname: 'Barritas de galleta cubiertas de chocolate KIT KAT pack de 5 uds. 41,5 g.',
-        prodcreatedtime: '2021-06-09T21:55:56',
-        prodviews: 2,
-        brand: {
-          branid: 144,
-          branname: 'KIT KAT',
-        },
-        category: {
-          cateid: 4,
-          catename: 'cacao',
-          cateimg: null,
-        },
-        supermarketProducts: [
-          {
-            id: {
-              supeid: 1,
-              prodid: 333,
-            },
-            supeid: {
-              supeid: 1,
-              supename: 'alcampo',
-              supeimg: null,
-            },
-            offer: null,
-            suprprice: 224,
-            suprlastupdated: '2021-06-09T21:55:56',
-            suprimg: 'https://www.alcampo.es/media/h1b/h1e/10752154402846.jpg',
-            suprstock: true,
-          },
-        ],
-        pack: {
-          packid: 1,
-          packquantity: 5,
-        },
-        container: null,
-      };
+      const resp = await productRepository.getProduct({ prodid: this.$route.params.idproduct });
+      this.product = resp.data;
+      console.log(this.product);
 
       this.supermarketProductsExtractor();
       this.initComparingTable();
@@ -75,7 +39,7 @@ export default {
     supermarketProductsExtractor() {
       let supermarketProduct = {};
       for (supermarketProduct of this.product.supermarketProducts) {
-        if (supermarketProduct.supeid.supename === 'elcorteingles' || supermarketProduct.supeid.supename === 'hipercor') {
+        if (supermarketProduct.supeid.supename === 'elcorteingles' || supermarketProduct.supeid.supename === 'hipercor' || supermarketProduct.supeid.supename === 'carrefour') {
           this.productImg = supermarketProduct.suprimg;
         }
 
