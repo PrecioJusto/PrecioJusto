@@ -1,0 +1,19 @@
+.wrapper {
+    width: 60%;
+    margin: auto;
+    background-color: red;
+}
+
+@media (max-width: 1200px) {
+    .wrapper {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {}
