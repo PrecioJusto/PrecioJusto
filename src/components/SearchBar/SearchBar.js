@@ -2,7 +2,12 @@ export default {
   name: 'SearchBar',
   data() {
     return {
-      searchText: '',
+      value: '',
     };
+  },
+  methods: {
+    submit() {
+      this.$router.push(`/search/${this.value}`);
+    },
   },
 };

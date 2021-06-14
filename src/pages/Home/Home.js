@@ -36,8 +36,6 @@ export default {
       img: cat.cateimg,
     }));
 
-    // tengo que terminar el ver todas!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
     if (this.$q.platform.is.desktop) {
       this.offerProducts = _.chunk(Object.values(this.rawOffers), 5);
       this.featuredProds = _.chunk(Object.values(this.rawFeatured), 5);

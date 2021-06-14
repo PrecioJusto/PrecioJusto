@@ -9,7 +9,7 @@
       class="bg-white text-secondary"
     >
       <q-toolbar class="q-toolbar row">
-        <q-toolbar-title class="q-toolbar-title customBold col-3">
+        <q-toolbar-title @click="$router.replace('/')" class="q-toolbar-title cursor-pointer customBold col-3">
           <q-avatar class="q-avatar q-mr-sm">
             <img src="../../../public/icons/favicon-128x128.png" />
           </q-avatar>
