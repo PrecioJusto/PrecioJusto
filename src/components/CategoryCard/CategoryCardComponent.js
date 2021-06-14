@@ -19,16 +19,10 @@ export default {
     };
   },
   created() {
-    this.categoryName = this.category.name;
-    this.categoryImg = this.category.img;
+    this.categoryName = this.category.catename;
+    this.categoryImg = this.category.cateimg;
     this.cardMode = (this.forHomePage) ? 'home-page' : 'explore-page';
     this.color = this.category.colorClass;
-    console.log(this.color);
-  },
-  mounted() {
-    // const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    // console.log(randomColor);
-    // document.querySelector('#cardItem').style.backgroundColor = randomColor;
   },
   methods: {
     categoryDetail() {

@@ -5,7 +5,7 @@
         <SearchBar class="search-bar" />
       </q-header>
       <div id="categoriesContainer" class="flex row wrap justify-center">
-        <CategoryCard class="categoriesCard" v-for="cat in categories" :key="cat.name" :category="cat" :color="cat.colorClass" :forHomePage="false"/>
+        <CategoryCard class="categoriesCard" v-for="cat in categories" :key="cat.catename" :category="cat" :color="cat.colorClass" :forHomePage="false"/>
       </div>
     </q-page>
   </div>
