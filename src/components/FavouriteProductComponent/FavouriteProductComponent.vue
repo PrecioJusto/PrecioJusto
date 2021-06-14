@@ -35,5 +35,5 @@
    </div>
 </template>
 
-<script src='./CartComponent.js'></script>
-<style scoped lang="scss" src="./CartComponent.scss"></style>
+<script src='./FavouriteProductComponent.js'></script>
+<style scoped lang="scss" src="./FavouriteProductComponent.scss"></style>

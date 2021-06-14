@@ -1,4 +1,3 @@
-// import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
 import { userRepository } from 'src/core/Areas/User/UserRepository.js';
 
 export default {

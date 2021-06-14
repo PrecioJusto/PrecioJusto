@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-undef */
-import { product } from 'puppeteer';
 import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
 import { userRepository } from 'src/core/Areas/User/UserRepository';
 
@@ -24,12 +23,16 @@ export default {
       auth_token: this.$q.localStorage.getItem('auth_token'),
     };
   },
-  async mounted() {
+  async created() {
     if (this.$q.localStorage.getItem('user_cart') == null) this.$q.localStorage.set('user_cart', { products: [] });
+    if (this.auth_token) {
+      const fauvoriteProds = await userRepository.getFavouriteProducts();
+      this.isFavourite = fauvoriteProds.data.filter((p) => p.prodid === parseInt(this.$route.params.idproduct, 10)).length !== 0;
+    }
     if (this.$route.params.idproduct) {
       const resp = await productRepository.getProduct({ prodid: this.$route.params.idproduct });
+      if (resp.messageError) this.$router.push('/');
       this.product = resp.data;
-
       this.supermarketProductsExtractor();
       this.initComparingTable();
     }
@@ -106,9 +109,9 @@ export default {
       if (this.auth_token !== null) {
         this.isFavourite = !this.isFavourite;
         if (this.isFavourite) {
-          userRepository.addFavourite({ prodid: product.prodid, useridfavourite: this.user.userid });
+          userRepository.addFavourite({ prodid: this.product.prodid, useridfavourite: this.user.userid });
         } else {
-          userRepository.deleteFavourite({ prodid: product.prodid, useridfavourite: this.user.userid });
+          userRepository.deleteFavourite({ prodid: this.product.prodid, useridfavourite: this.user.userid });
         }
       } else {
         this.$q.notify(
