@@ -4,8 +4,8 @@
 }
 
 .desktop {
-    .q-toolbar {
-        padding: 5px 100px;
+    .q-toolbar-title {
+        padding-left: 20%;
     }
     
     .ul-align-right {
@@ -21,6 +21,17 @@
         justify-content: center;
         align-items: center;
     }
+
+    .q-tab {
+        margin-left: 305px;
+    }
 }
 
-.mobile {}
+.mobile {
+    .q-footer {
+        overflow: hidden;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}

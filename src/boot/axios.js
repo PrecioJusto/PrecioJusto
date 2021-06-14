@@ -50,7 +50,7 @@ export const instances = { apiApplication, apiProducts };
     (error) => {
       if (error && error.response && error.response.data.messageError) {
         createNotification('negative', getMessageFromCode(error.response.data.messageError));
-      } else {
+      } else if (error.response.status !== 401) {
         createNotification('negative', 'Error desconocido');
       }
       return Promise.reject(error);

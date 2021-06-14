@@ -8,6 +8,7 @@ export default {
     return {
       leftDrawerOpen: false,
       left: false,
+      right: true,
       searchText: '',
     };
   },

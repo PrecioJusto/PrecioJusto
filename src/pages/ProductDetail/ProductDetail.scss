@@ -1,0 +1,163 @@
+.wrapper {
+    width: 60%;
+    margin: auto;
+}
+
+.product-info-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.product-info {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 14pt;
+}
+
+.product-name-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.product-name {
+    flex-basis: 90%;
+    font-size: 20pt;
+    font-family: customBold;
+    margin: 0;
+}
+
+.product-brand {
+    font-size: 15pt;
+}
+
+.product-info-wrapper > div {
+    flex-basis: 50%;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.go-back-btn {
+    position: absolute;
+    top: 0;
+    left: 10px;
+}
+
+.favourite {
+    position: absolute;
+    top: 0;
+    right: 100px;
+}
+
+.price-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.space-betweeen {
+    justify-content: space-between;
+}
+
+.add-product {
+    border-radius: 13px;
+    width: 36px;
+    height: 35px;
+    margin: 0 8px;
+}
+
+.add-to-cart-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter {
+    width: 15px;
+    text-align: center;
+}
+
+.product-image {
+    height: 300px;
+}
+
+.price {
+    font-size: 20pt;
+}
+
+.supermarkets-info-wrapper {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 13pt;
+}
+
+.middle > * {
+    vertical-align: middle;
+
+}
+.supermarket-img {
+    width: 50px;
+    object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+    .wrapper {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .favourite {
+        right: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-info-wrapper > div {
+        flex-basis: 100%;
+    }
+    .go-back-btn {
+        left: 0;
+    }
+
+    .product-info {
+        padding: 0 10px;
+        margin-top: 40px;
+    }
+
+    .product-name {
+        flex-basis: 100%;
+        line-height: 1.2;
+    }
+
+    .product-brand {
+        margin-top: 10px;
+    }
+
+    .favourite {
+        right: 10px;
+    }
+
+    .product-image {
+        height: 250px;
+    }
+}

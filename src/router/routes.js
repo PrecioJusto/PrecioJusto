@@ -4,7 +4,10 @@ const routes = [
     component: () => import('src/layouts/MainLayout/MainLayout.vue'),
     children: [
       { path: '', component: () => import('src/pages/Home/Home.vue') },
-      { path: 'producto/:idproducto', component: () => import('src/pages/Home/Home.vue') },
+      { path: 'producto/:idproduct', component: () => import('src/pages/ProductDetail/ProductDetail.vue') },
+      { path: ':categoria/productos', component: () => import('src/pages/ProductList/ProductList.vue') },
+      { path: 'carrito', component: () => import('src/pages/Cart/Cart.vue') },
+      { path: 'carrito/:idcart', component: () => import('src/pages/Cart/Cart.vue') },
     ],
   },
   {
@@ -38,23 +41,13 @@ const routes = [
     ],
   },
   {
-    path: '/user',
+    path: '/user/',
     component: () => import('src/layouts/UserLayout/UserLayout.vue'),
     children: [
-      {
-        path: '',
-        component: () => import('src/pages/Access/User/Details/UserDetails.vue'),
-      },
-    ],
-  },
-  {
-    path: '/user/settings/notifications',
-    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue'),
-      },
+      { path: '', component: () => import('src/pages/Access/User/Details/UserDetails.vue') },
+      { path: 'settings/notifications', component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue') },
+      { path: 'mobile', component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue') },
+      { path: 'carts', component: () => import('src/pages/Access/User/Carts/Carts.vue') },
     ],
   },
   {
@@ -74,16 +67,6 @@ const routes = [
       {
         path: '',
         component: () => import('src/pages/Access/User/About/About.vue'),
-      },
-    ],
-  },
-  {
-    path: '/user/mobile',
-    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue'),
       },
     ],
   },

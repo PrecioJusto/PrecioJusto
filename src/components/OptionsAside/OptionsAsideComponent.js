@@ -48,6 +48,7 @@ export default {
   methods: {
     signOut() {
       this.$q.localStorage.remove('auth_token');
+      this.$q.localStorage.remove('user_cart');
       this.$q.localStorage.remove('user');
       this.$router.push({ path: '/' });
     },

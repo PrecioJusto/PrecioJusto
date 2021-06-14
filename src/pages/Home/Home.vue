@@ -6,7 +6,7 @@
         <q-toolbar class="q-toolbar">
           <q-toolbar-title class="q-toolbar-title">
             <q-avatar class="q-avatar q-mr-sm">
-                <img class="category-img" src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+                <img class="category-img" src="../../../public/icons/favicon-128x128.png">
             </q-avatar>
           </q-toolbar-title>
         </q-toolbar>
@@ -63,7 +63,7 @@
             <small class="cursor-pointer">Ver todos</small>
           </div>
           <q-carousel
-            v-model="featuredProds"
+            v-model="featuredSlider"
             transition-prev="slide-right"
             transition-next="slide-left"
             swipeable
@@ -72,7 +72,7 @@
             arrows
             class="bg-none rounded-borders q-py-none q-my-md carousel-products"
           >
-            <q-carousel-slide v-for="(slide, idx) in offerProducts" :key="slide.name" :name="idx" class="column no-wrap q-py-none carousel-slide">
+            <q-carousel-slide v-for="(slide, idx) in featuredProds" :key="slide.name" :name="idx" class="column no-wrap q-py-none carousel-slide">
               <div class="row fit justify-start q-gutter-xs q-col-gutter no-wrap offer-slider q-py-none">
                 <ProductCard v-for="prod in slide" :key="prod.name" :product="prod" />
               </div>
