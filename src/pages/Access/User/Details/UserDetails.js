@@ -24,7 +24,7 @@ export default {
       password: null,
       confirmPassword: null,
       oldPassword: null,
-      userImage: null,
+      userImage: '',
       gender: null,
       phone: null,
       usernative: null,
@@ -92,6 +92,9 @@ export default {
       }
     },
     async finalSubmitAfterDialog() {
+      if (this.userImage === '') {
+        this.userImage = null;
+      }
       const updatedUser = await userRepository.updateProfile({
         userid: this.id,
         username: this.name,
