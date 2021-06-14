@@ -6,7 +6,7 @@
         <q-toolbar class="q-toolbar">
           <q-toolbar-title class="q-toolbar-title">
             <q-avatar class="q-avatar q-mr-sm">
-                <img class="category-img" src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+                <img class="category-img" src="../../../public/icons/favicon-128x128.png">
             </q-avatar>
           </q-toolbar-title>
         </q-toolbar>

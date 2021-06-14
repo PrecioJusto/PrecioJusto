@@ -1,17 +1,52 @@
-.desktop {
-    #center {
-        width: 50%;
-        margin: auto;
-        h1 {
-            font-size: 310%;
-            text-align: center;
+.wrapper {
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+
+    h1 {
+        font-size: 35px;
+        text-align: center;
+    }
+    p {
+        text-align: center;
+        margin-top: 20px;
+        span {
+            font-weight: bold;
+            color: $primary;
         }
     }
 }
 
+.clickable {
+    cursor: pointer;
+}
 
-.mobile {
-    #center {
-       
+.title-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.deleteIcon {
+    font-size: 15pt;
+}
+
+@media (max-width: 1200px) {
+    .wrapper {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .wrapper {
+        width: 90%;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .title-wrapper {
+        justify-content: center;
     }
 }
