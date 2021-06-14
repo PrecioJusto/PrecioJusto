@@ -9,14 +9,14 @@
       class="bg-white text-secondary"
     >
       <q-toolbar class="q-toolbar row">
-        <q-toolbar-title class="q-toolbar-title customBold col-3">
+        <q-toolbar-title class="q-toolbar-title customBold col-4" @click="$router.push('/').catch(()=>{})">
           <q-avatar class="q-avatar q-mr-sm">
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+            <img src="../../../public/icons/favicon-128x128.png" />
           </q-avatar>
           Precio Justo
         </q-toolbar-title>
         <div class="col-12 menu">
-          <MenuBar />
+          <MenuBar/>
         </div>
       </q-toolbar>
     </q-header>

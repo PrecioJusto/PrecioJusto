@@ -31,23 +31,13 @@ const routes = [
     ],
   },
   {
-    path: '/user',
+    path: '/user/',
     component: () => import('src/layouts/UserLayout/UserLayout.vue'),
     children: [
-      {
-        path: '',
-        component: () => import('src/pages/Access/User/Details/UserDetails.vue'),
-      },
-    ],
-  },
-  {
-    path: '/user/settings/notifications',
-    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue'),
-      },
+      { path: '', component: () => import('src/pages/Access/User/Details/UserDetails.vue') },
+      { path: 'settings/notifications', component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue') },
+      { path: 'mobile', component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue') },
+      { path: 'carts', component: () => import('src/pages/Access/User/Carts/Carts.vue') },
     ],
   },
   {
@@ -67,16 +57,6 @@ const routes = [
       {
         path: '',
         component: () => import('src/pages/Access/User/About/About.vue'),
-      },
-    ],
-  },
-  {
-    path: '/user/mobile',
-    component: () => import('src/layouts/UserLayout/UserLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue'),
       },
     ],
   },

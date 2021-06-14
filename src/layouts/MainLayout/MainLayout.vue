@@ -11,21 +11,15 @@
       <q-toolbar class="q-toolbar row">
         <q-toolbar-title class="q-toolbar-title customBold col-3">
           <q-avatar class="q-avatar q-mr-sm">
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
+            <img src="../../../public/icons/favicon-128x128.png" />
           </q-avatar>
           Precio Justo
         </q-toolbar-title>
-        <div class="col-6 searcher">
+        <div class="col-4 searcher">
           <SearchBar />
         </div>
-        <div class="col-3 menu">
-         <q-btn-group outline spread>
-            <q-btn no-caps size="md" outline label="Inicio" />
-            <q-btn no-caps size="md" outline label="Explora" />
-            <q-btn no-caps size="md" outline label="Favoritos" />
-            <q-btn no-caps size="md" outline label="Carrito" />
-            <q-btn no-caps size="md" outline label="Cuenta" />
-          </q-btn-group>
+        <div class="col-5 menu">
+          <MenuBar />
         </div>
       </q-toolbar>
     </q-header>

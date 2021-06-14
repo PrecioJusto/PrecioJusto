@@ -5,7 +5,6 @@
         // flex-flow: row nowrap;
         // justify-content: center;
         // align-items: center;
-        max-width: 300px;
         // background-color: red;
     }
     
@@ -14,11 +13,19 @@
     }
 
     .q-tab {
-        //max-width: 80px;
-        //font-size: 11pt;
+        margin-left: -10px;
+        @media screen and (max-width: 1850px) {
+            width: 130px;
+        }
+        @media screen and (max-width: 1750px) {
+            width: 120px;
+        }
+        @media screen and (max-width: 1650px) {
+            width: 110px;
+        }
     }
 }
 
 .mobile {
-
+   
 }
