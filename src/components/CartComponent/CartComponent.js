@@ -7,37 +7,52 @@ export default {
   data() {
     return {
       products: [],
+      cartId: null,
+      isEmpty: false,
     };
   },
   async created() {
     let rawProducts = [];
     if (this.$route.params.idcart) {
-      const shopid = this.$route.params.idcart;
-      console.log(shopid);
-      const resp = await userRepository.getShoppingCartById({ shopid });
-      console.log(resp);
-      rawProducts = resp.data;
+      this.cartId = this.$route.params.idcart;
+      const resp = await userRepository.getShoppingCartById({ shopid: this.cartId });
+      rawProducts = resp.data.products;
+      if (rawProducts.length > 0) this.products = this.productExtractor(rawProducts, 0);
     } else {
       const cart = this.$q.localStorage.getItem('user_cart');
-      const temp = await productRepository.getProductsFromList(cart.products.map((p) => p.prodid));
-      console.log(temp.data);
-      rawProducts = temp.data;
+      if (cart.products.length > 0) {
+        const temp = await productRepository.getProductsFromList(cart.products.map((p) => p.prodid));
+        rawProducts = temp.data;
+        this.products = this.productExtractor(rawProducts, 1);
+      } else this.isEmpty = true;
     }
-    console.log(this.products);
-    this.products = this.productExtractor(rawProducts);
   },
   methods: {
-    deleteProduct() {
-      console.log('samuel');
+    async deleteProduct(productId) {
+      if (this.cartId != null) {
+        const response = await userRepository.deleteProductShoppingCart({ prodid: productId, shopid: this.cartId });
+        if (response.status === 200) {
+          this.$q.notify(
+            {
+              type: 'positive',
+              message: 'Se ha eliminado el producto del carrito correctamente',
+            },
+          );
+          this.refreshCart(productId);
+        }
+      }
+    },
+
+    refreshCart(id) {
+      this.products = this.products.filter((p) => p.id !== id);
     },
 
     redirect(id) {
       this.$router.push(`/producto/${id}`);
     },
 
-    productExtractor(products) {
+    productExtractor(products, type) {
       const filteringVoid = products.filter((prod) => prod.supermarketProducts.length > 0);
-
       return filteringVoid.map((prod) => {
         const id = prod.prodid;
         const name = prod.prodname;
@@ -48,7 +63,12 @@ export default {
         let supermarketProduct;
         // eslint-disable-next-line no-restricted-syntax
         for (supermarketProduct of prod.supermarketProducts) {
-          if (supermarketProduct.supeid.supename === 'elcorteingles' || supermarketProduct.supeid.supename === 'hipercor') {
+          if (type) {
+            if (supermarketProduct.supeid.supename === 'elcorteingles' || supermarketProduct.supeid.supename === 'hipercor') {
+              img = supermarketProduct.suprimg;
+              break;
+            }
+          } else if (supermarketProduct.supename === 'elcorteingles' || supermarketProduct.supename === 'hipercor') {
             img = supermarketProduct.suprimg;
             break;
           }

@@ -100,7 +100,6 @@ export default {
     },
 
     favourite() {
-      // añadir a favoritos
       this.isFavourite = true;
     },
 

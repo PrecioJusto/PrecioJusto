@@ -25,7 +25,7 @@ export default {
     if (this.$q.localStorage.getItem('user_cart') == null) this.$q.localStorage.set('user_cart', { products: [] });
 
     const destacadosProdResp = await productRepository.getTopProducts();
-    const categoriesRespPromise = await productRepository.getCategoryPaged(0);
+    const categoriesRespPromise = await productRepository.getCategoriesPaged(0);
     const offerProdRespPromise = await productRepository.getProductsWithOfferOrderByPercentage();
 
     this.rawFeatured = this.productExtractor(destacadosProdResp.data);

@@ -30,7 +30,7 @@
             </q-item-section>
 
             <q-item-section side >
-               <q-icon class="clickable deleteIcon" @click="deleteProduct" name="las la-times" />
+               <q-icon class="clickable deleteIcon" @click="deleteProduct(product.id)" name="las la-times" />
                <p class="product-price">{{product.price}}</p>
             </q-item-section>
          </q-item>
