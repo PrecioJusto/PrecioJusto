@@ -1,4 +1,3 @@
-//    const colors = ['green', 'red', 'blue', 'yellow', 'orange', 'purple'];
 $colorClasses : ("red" : rgb(253, 232, 228), "blue" : rgb(237, 248, 253), "green" : rgb(238, 248, 241), "yellow" : rgb(255, 248, 229), "orange": rgb(254, 247, 237), "purple" : rgb(244, 235, 248));
 
 @each $key, $value in $colorClasses {
@@ -6,8 +5,7 @@ $colorClasses : ("red" : rgb(253, 232, 228), "blue" : rgb(237, 248, 253), "green
         background-color: $value;
         border: 2px solid darken($value, 10%);
     }
-  }
-  
+}
 
 .product-info {
     text-align: center;
@@ -28,8 +26,8 @@ $colorClasses : ("red" : rgb(253, 232, 228), "blue" : rgb(237, 248, 253), "green
 
     .category-img {
         object-fit: cover;
-        width: 100px;
-        height: 100%;
+        max-width: 95px;
+        max-height: 95px;
         margin: 5px auto;
     }
     

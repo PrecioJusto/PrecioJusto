@@ -19,13 +19,16 @@ export default {
     };
   },
   created() {
-    this.categoryName = this.category.catename;
+    this.categoryName = this.formatCategoryName(this.category.catename);
     this.categoryImg = this.category.cateimg;
     this.cardMode = (this.forHomePage) ? 'home-page' : 'explore-page';
     this.color = this.category.colorClass;
   },
   methods: {
     categoryDetail() {
+    },
+    formatCategoryName(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1).replaceAll('_', ' ');
     },
   },
 };

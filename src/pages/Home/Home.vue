@@ -16,7 +16,7 @@
         <div class="banner-wrapper">
           <div class="banner-header q-py-sm">
             <h4 class="q-my-none">Categorias</h4>
-            <small class="cursor-pointer" @click="$router.replace('/categorias')">Ver todas</small>
+            <small class="cursor-pointer" @click="$router.replace('/explora')">Ver todas</small>
           </div>
           <q-carousel
             v-model="catSlider"

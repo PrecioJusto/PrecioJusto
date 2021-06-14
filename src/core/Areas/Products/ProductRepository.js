@@ -72,7 +72,7 @@ class ProductRepository {
   }
 
   getAllProductsFromName(paramsProd) {
-    return apiProducts.get(`/products/name/${paramsProd.name}`);
+    return apiProducts.get(`/products/name/${paramsProd.value}`);
   }
 
   getAllProductsFromCatename(paramsProd) {

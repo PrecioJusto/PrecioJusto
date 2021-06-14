@@ -7,7 +7,11 @@ export default {
   },
   methods: {
     submit() {
-      this.$router.push(`/search/${this.value}`);
+      if (this.value.length > 0) {
+        this.$router.push(`/search/${this.value}`);
+      } else {
+        this.$router.push('/');
+      }
     },
   },
 };

@@ -31,10 +31,7 @@ export default {
     this.rawFeatured = this.productExtractor(destacadosProdResp.data);
     this.rawOffers = this.productExtractor(offerProdRespPromise.data);
     const categoriesData = categoriesRespPromise.data;
-    this.rawCategories = categoriesData.map((cat) => ({
-      name: this.formatCategoryName(cat.catename),
-      img: cat.cateimg,
-    }));
+    this.rawCategories = categoriesData;
 
     if (this.$q.platform.is.desktop) {
       this.offerProducts = _.chunk(Object.values(this.rawOffers), 5);
@@ -47,6 +44,7 @@ export default {
     }
   },
   watch: {
+    // eslint-disable-next-line func-names
     '$q.screen.width': function () {
       this.changeProductsBatch();
     },
@@ -108,10 +106,6 @@ export default {
     formatPrice(cents) {
       const price = cents / 100;
       return price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
-    },
-
-    formatCategoryName(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1).replaceAll('_', ' ');
     },
   },
 };
