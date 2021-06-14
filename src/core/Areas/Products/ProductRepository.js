@@ -55,6 +55,10 @@ class ProductRepository {
     return apiProducts.get('/products/top');
   }
 
+  getProductsFromCategoryPaged(data) {
+    return apiProducts.get(`/products/catename/${data.catename}/${data.page}`);
+  }
+
   getProductsWithOfferOrderByPercentage() {
     return apiProducts.get('/products/offer');
   }
@@ -68,7 +72,7 @@ class ProductRepository {
   }
 
   getAllProductsFromName(paramsProd) {
-    return apiProducts.get(`/products/name/${paramsProd.name}`);
+    return apiProducts.get(`/products/name/${paramsProd.value}`);
   }
 
   getAllProductsFromCatename(paramsProd) {

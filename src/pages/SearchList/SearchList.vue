@@ -7,5 +7,5 @@
 </div>
 </template>
 
-<script src='./ProductList.js'></script>
-<style scoped lang="scss" src="./ProductList.scss"></style>
+<script src='./SearchList.js'></script>
+<style scoped lang="scss" src="./SearchList.scss"></style>

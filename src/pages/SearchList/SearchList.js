@@ -2,7 +2,7 @@ import { productRepository } from 'src/core/Areas/Products/ProductRepository.js'
 import ProductListComponent from 'src/components/ProductListComponent/ProductListComponent.vue';
 
 export default {
-  name: 'ProductList',
+  name: 'SearchList',
   components: { ProductListComponent },
   data() {
     return {
@@ -12,24 +12,26 @@ export default {
   },
 
   async created() {
-    if (this.$route.params.categoria) {
-      this.formatCategoryName(this.$route.params.categoria);
+    if (this.$route.params.search) {
+      this.formatCategoryName(`Resultados para '${this.$route.params.search}':`);
       this.initProducts();
     } else {
       this.$router.push('/');
     }
   },
-
+  watch: {
+    '$route.params.search': {
+      handler() {
+        this.initProducts();
+        this.formatCategoryName(`Resultados para '${this.$route.params.search}':`);
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
   methods: {
     async initProducts() {
-      let resp;
-      if (this.$route.params.categoria === 'ofertas-exclusivas') {
-        resp = await productRepository.getProductsWithOfferOrderByPercentage();
-      } else if (this.$route.params.categoria === 'productos-destacados') {
-        resp = await productRepository.getTopProducts();
-      } else {
-        resp = await productRepository.getAllProductsFromCatename({ catename: this.$route.params.categoria });
-      }
+      const resp = await productRepository.getAllProductsFromName({ value: this.$route.params.search });
 
       const rawData = resp.data;
       if (rawData.length > 0) {
@@ -41,11 +43,6 @@ export default {
 
     formatCategoryName(str) {
       this.categoryName = str.charAt(0).toUpperCase() + str.slice(1).replaceAll(/_|-/g, ' ');
-    },
-
-    formatPrice(cents) {
-      const price = cents / 100;
-      return price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
     },
   },
 };

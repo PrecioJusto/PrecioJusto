@@ -16,7 +16,7 @@
         <div class="banner-wrapper">
           <div class="banner-header q-py-sm">
             <h4 class="q-my-none">Categorias</h4>
-            <small class="cursor-pointer">Ver todas</small>
+            <small class="cursor-pointer" @click="$router.replace('/explora')">Ver todas</small>
           </div>
           <q-carousel
             v-model="catSlider"
@@ -38,7 +38,7 @@
         <div class="banner-wrapper">
           <div class="banner-header q-py-sm">
             <h4 class="q-my-none">Ofertas exclusivas</h4>
-            <small class="cursor-pointer">Ver todas</small>
+            <small class="cursor-pointer" @click="$router.replace('/ofertas-exclusivas/productos')">Ver todas</small>
           </div>
           <q-carousel
             v-model="prodSlider"
@@ -60,7 +60,7 @@
         <div class="banner-wrapper">
           <div class="banner-header q-py-sm">
             <h4 class="q-my-none">Productos más destacados</h4>
-            <small class="cursor-pointer">Ver todos</small>
+            <small class="cursor-pointer" @click="$router.replace('/productos-destacados/productos')">Ver todos</small>
           </div>
           <q-carousel
             v-model="featuredSlider"

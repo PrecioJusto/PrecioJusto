@@ -22,7 +22,7 @@ export default {
     this.productName = this.product.name;
     this.productPrice = this.product.price;
     this.productImg = this.product.img;
-    this.productBrand = this.product.brand;
+    this.productBrand = this.formatBrand(this.product.brand);
   },
   methods: {
     productDetail() {
@@ -51,6 +51,10 @@ export default {
         }
       });
       this.$q.localStorage.set('user_cart', cart);
+    },
+    formatBrand(str) {
+      if (str === '_unknown') return '';
+      return str;
     },
   },
 };

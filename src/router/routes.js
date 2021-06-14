@@ -6,6 +6,7 @@ const routes = [
       { path: '', component: () => import('src/pages/Home/Home.vue') },
       { path: 'producto/:idproduct', component: () => import('src/pages/ProductDetail/ProductDetail.vue') },
       { path: ':categoria/productos', component: () => import('src/pages/ProductList/ProductList.vue') },
+      { path: 'search/:search', component: () => import('src/pages/SearchList/SearchList.vue') },
       { path: 'carrito', component: () => import('src/pages/Cart/Cart.vue') },
       { path: 'carrito/:idcart', component: () => import('src/pages/Cart/Cart.vue') },
       { path: 'explora', component: () => import('src/pages/Category/Categories.vue') },

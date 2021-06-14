@@ -1,6 +1,6 @@
 <template>
    <div :class="cardMode">
-     <q-card id="cardItem" class="q-pa-sm q-ma-sm cursor-pointer non-selectable" flat bordered @click="categoryDetail" :class="color">
+     <q-card id="cardItem" class="q-pa-sm q-ma-sm cursor-pointer non-selectable" flat bordered @click="$router.push(`/${category.catename}/productos`)" :class="color">
       <div class="category-info-wrapper">
         <img class="category-img" :src="categoryImg">
 
