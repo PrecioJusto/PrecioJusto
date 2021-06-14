@@ -29,7 +29,6 @@ export default {
         );
         const carts = await userRepository.getShoppingCartsByUser();
         this.carts = carts.data;
-        this.last = carts.data[carts.data.length - 1].shopid;
       }
     },
   },

@@ -19,6 +19,10 @@ class ProductRepository {
     return apiProducts.get(`/category/${paramsIds.cateid}`);
   }
 
+  getCategoryPaged(page) {
+    return apiProducts.get(`/categories/${page}`);
+  }
+
   getContainers() {
     return apiProducts.get('/containers');
   }
@@ -47,8 +51,12 @@ class ProductRepository {
     return apiProducts.get(`/products/page/${page}`);
   }
 
-  getProductsWithOfferOrderByPercentage(page) {
-    return apiProducts.get(`/products/page/offer/${page}`);
+  getTopProducts() {
+    return apiProducts.get('/products/top');
+  }
+
+  getProductsWithOfferOrderByPercentage() {
+    return apiProducts.get('/products/offer');
   }
 
   getProduct(paramsIds) {

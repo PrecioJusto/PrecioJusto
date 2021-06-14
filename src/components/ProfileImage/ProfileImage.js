@@ -22,7 +22,7 @@ export default {
       imagePreviewData: this.value,
     };
   },
-  async created() {
+  async mounted() {
     const user = await userRepository.getProfile();
     const data = user.data.userImage;
     if (data != null) {

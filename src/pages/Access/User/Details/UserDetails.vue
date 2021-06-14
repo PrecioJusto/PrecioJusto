@@ -7,7 +7,7 @@
               id="formIn"
               @submit="onSubmit"
               class="q-gutter-md">
-              <profile-image :value="userImage" :width="width" :height="height" v-on:input="onImageSet"></profile-image>
+              <ProfileImage :value="userImage" :width="width" :height="height" v-on:input="onImageSet"></ProfileImage>
               <q-input
                 dense
                 v-model="name"
@@ -16,7 +16,7 @@
                 :error="$v.name.$error"
                 :error-message="vuelidateMsg('name')"
                 ><template v-slot:prepend><q-icon name="las la-user" /></template>
-                </q-input>
+              </q-input>
 
               <q-input
                 dense
