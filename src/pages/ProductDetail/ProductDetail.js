@@ -1,6 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-undef */
+import { product } from 'puppeteer';
 import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
+import { userRepository } from 'src/core/Areas/User/UserRepository';
 
 export default {
   name: 'ProductDetail',
@@ -18,6 +20,8 @@ export default {
       tableLoading: true,
       supermarketImages: [],
       isFavourite: false,
+      user: this.$q.localStorage.getItem('user'),
+      auth_token: this.$q.localStorage.getItem('auth_token'),
     };
   },
   async mounted() {
@@ -25,7 +29,6 @@ export default {
     if (this.$route.params.idproduct) {
       const resp = await productRepository.getProduct({ prodid: this.$route.params.idproduct });
       this.product = resp.data;
-      console.log(this.product);
 
       this.supermarketProductsExtractor();
       this.initComparingTable();
@@ -100,7 +103,26 @@ export default {
     },
 
     favourite() {
-      this.isFavourite = true;
+      if (this.auth_token !== null) {
+        this.isFavourite = !this.isFavourite;
+        if (this.isFavourite) {
+          userRepository.addFavourite({ prodid: product.prodid, useridfavourite: this.user.userid });
+        } else {
+          userRepository.deleteFavourite({ prodid: product.prodid, useridfavourite: this.user.userid });
+        }
+      } else {
+        this.$q.notify(
+          {
+            type: 'info',
+            message: 'Para poder guardar como favorito un producto debe estar logueado',
+          },
+        );
+      }
+    },
+
+    formatBrand(str) {
+      if (str === '_unknown') return '';
+      return str;
     },
 
     formatPrice(cents) {

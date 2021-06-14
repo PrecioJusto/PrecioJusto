@@ -12,7 +12,7 @@
                 <div class="product-name-wrapper">
                     <div class="product-name">{{ product.prodname }}</div>
                 </div>
-                <div class="product-brand">{{ product.brand.branname }}</div>
+                <div v-if="product.brand " class="product-brand">{{ formatBrand(product.brand.branname) }}</div>
             </div>
             <div class="q-mt-md" v-if="product.container">{{ capitalize(product.container.conttype) }} de {{ product.container.contcapacity }}{{ product.container.contunit }}</div>
             <div class="q-my-md q-mr-md price-wrapper space-betweeen">
