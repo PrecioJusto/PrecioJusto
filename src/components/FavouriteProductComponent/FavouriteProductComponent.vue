@@ -1,8 +1,7 @@
 <template>
    <div class="wrapper">
       <div class="title-wrapper">
-         <q-icon class="cart-icon" name="las la-shopping-cart" />
-         <h3 class="customBold">Mi carrito</h3>
+         <h3>Mis productos favoritos</h3>
       </div>
       <q-list bordered padding class="rounded-borders">
          <div v-for="(product, idx) in products" :key="product.id" >
