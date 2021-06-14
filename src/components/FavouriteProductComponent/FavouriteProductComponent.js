@@ -1,58 +1,36 @@
 import { userRepository } from 'src/core/Areas/User/UserRepository';
-import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
+// import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
 
 export default {
-  name: 'CartComponent',
+  name: 'FavouriteProductComponent',
   props: {},
   data() {
     return {
       products: [],
-      cartId: null,
       isEmpty: false,
+      user: this.$q.localStorage.getItem('user'),
     };
   },
   async created() {
-    let rawProducts = [];
-    if (this.$route.params.idcart) {
-      this.cartId = this.$route.params.idcart;
-      const resp = await userRepository.getShoppingCartById({ shopid: this.cartId });
-      rawProducts = resp.data.products;
-      if (rawProducts.length > 0) this.products = this.productExtractor(rawProducts, 0);
-    } else {
-      const cart = this.$q.localStorage.getItem('user_cart');
-      if (cart.products.length > 0) {
-        const temp = await productRepository.getProductsFromList(cart.products.map((p) => p.prodid));
-        rawProducts = temp.data;
-        this.products = this.productExtractor(rawProducts, 1);
-      } else this.isEmpty = true;
-    }
+    const request = await userRepository.getFavouriteProducts();
+    const rawProds = request.data;
+    if (rawProds.length > 0) this.products = this.productExtractor(rawProds, 0);
   },
   methods: {
     async deleteProduct(productId) {
-      if (this.cartId != null) {
-        const response = await userRepository.deleteProductShoppingCart({ prodid: productId, shopid: this.cartId });
-        if (response.status === 200) {
-          this.$q.notify(
-            {
-              type: 'positive',
-              message: 'Se ha eliminado el producto del carrito correctamente',
-            },
-          );
-          this.refreshCart(productId);
-        }
-      } else {
-        const cart = this.$q.localStorage.getItem('user_cart');
-        cart.products.forEach((p) => {
-          if (p.prodid === productId) {
-            cart.products = cart.products.filter((p2) => p2 !== p);
-          }
-        });
-        this.$q.localStorage.set('user_cart', cart);
-        this.refreshCart();
+      const response = await userRepository.deleteFavourite({ userid: this.user.userid, prodid: productId });
+      if (response.status === 200) {
+        this.$q.notify(
+          {
+            type: 'positive',
+            message: 'Se ha eliminado el producto de favoritos correctamente',
+          },
+        );
+        this.refreshList(productId);
       }
     },
 
-    refreshCart(id) {
+    refreshList(id) {
       this.products = this.products.filter((p) => p.id !== id);
     },
 

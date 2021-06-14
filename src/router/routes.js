@@ -40,6 +40,7 @@ const routes = [
       { path: 'ajustes/notificaciones', component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue') },
       { path: 'movil', component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue') },
       { path: 'carritos', component: () => import('src/pages/Access/User/Carts/Carts.vue') },
+      { path: 'favoritos', component: () => import('src/pages/Access/User/Favourite/FavouriteProducts.vue') },
     ],
   },
   {

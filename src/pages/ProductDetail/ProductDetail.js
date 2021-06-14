@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-undef */
 import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
+import { userRepository } from 'src/core/Areas/User/UserRepository';
 
 export default {
   name: 'ProductDetail',
@@ -18,15 +19,25 @@ export default {
       tableLoading: true,
       supermarketImages: [],
       isFavourite: false,
+      user: this.$q.localStorage.getItem('user'),
+      auth_token: this.$q.localStorage.getItem('auth_token'),
     };
   },
-  async mounted() {
+  async created() {
     if (this.$q.localStorage.getItem('user_cart') == null) this.$q.localStorage.set('user_cart', { products: [] });
+    if (this.auth_token) {
+      const fauvoriteProds = await userRepository.getFavouriteProducts();
+      this.isFavourite = fauvoriteProds.data.filter((p) => p.prodid === parseInt(this.$route.params.idproduct, 10)).length !== 0;
+    }
     if (this.$route.params.idproduct) {
       const resp = await productRepository.getProduct({ prodid: this.$route.params.idproduct });
+      if (resp.messageError) this.$router.push('/');
       this.product = resp.data;
+<<<<<<< HEAD
+=======
       this.product.brand.branname = this.formatBrand(this.product.brand.branname);
 
+>>>>>>> origin/develop
       this.supermarketProductsExtractor();
       this.initComparingTable();
     }
@@ -100,7 +111,26 @@ export default {
     },
 
     favourite() {
-      this.isFavourite = true;
+      if (this.auth_token !== null) {
+        this.isFavourite = !this.isFavourite;
+        if (this.isFavourite) {
+          userRepository.addFavourite({ prodid: this.product.prodid, useridfavourite: this.user.userid });
+        } else {
+          userRepository.deleteFavourite({ prodid: this.product.prodid, useridfavourite: this.user.userid });
+        }
+      } else {
+        this.$q.notify(
+          {
+            type: 'info',
+            message: 'Para poder guardar como favorito un producto debe estar logueado',
+          },
+        );
+      }
+    },
+
+    formatBrand(str) {
+      if (str === '_unknown') return '';
+      return str;
     },
 
     formatPrice(cents) {
