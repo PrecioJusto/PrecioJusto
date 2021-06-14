@@ -22,8 +22,10 @@ export default {
     };
   },
   async created() {
-    const destacadosProdResp = await productRepository.getProductsOrderdedByViews(0);
-    const categoriesRespPromise = await productRepository.getCategories();
+    if (this.$q.localStorage.getItem('user_cart') == null) this.$q.localStorage.set('user_cart', { products: [] });
+
+    const destacadosProdResp = await productRepository.getTopProducts();
+    const categoriesRespPromise = await productRepository.getCategoryPaged(0);
     const offerProdRespPromise = await productRepository.getProductsWithOfferOrderByPercentage();
 
     this.rawFeatured = this.productExtractor(destacadosProdResp.data);
@@ -55,15 +57,15 @@ export default {
     changeProductsBatch() {
       if (this.$q.screen.width > 1350) {
         this.offerProducts = _.chunk(Object.values(this.rawOffers), 5);
-        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
+        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 5);
         this.categories = _.chunk(Object.values(this.rawCategories), 4);
       } else if (this.$q.screen.width > 1055 && this.$q.screen.width <= 1350) {
         this.offerProducts = _.chunk(Object.values(this.rawOffers), 4);
-        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
+        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 4);
         this.categories = _.chunk(Object.values(this.rawCategories), 3);
       } else if (this.$q.screen.width > 790 && this.$q.screen.width <= 1055) {
         this.offerProducts = _.chunk(Object.values(this.rawOffers), 3);
-        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 2);
+        this.featuredProds = _.chunk(Object.values(this.rawFeatured), 3);
         this.categories = _.chunk(Object.values(this.rawCategories), 2);
       } else if (this.$q.screen.width <= 790) {
         this.categories = _.chunk(Object.values(this.rawCategories), 1);

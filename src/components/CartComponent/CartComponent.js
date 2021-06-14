@@ -1,4 +1,5 @@
 import { userRepository } from 'src/core/Areas/User/UserRepository';
+import { productRepository } from 'src/core/Areas/Products/ProductRepository.js';
 
 export default {
   name: 'CartComponent',
@@ -17,124 +18,12 @@ export default {
       console.log(resp);
       rawProducts = resp.data;
     } else {
-      rawProducts = this.$q.localStorage.getItem('cart');
+      const cart = this.$q.localStorage.getItem('user_cart');
+      const temp = await productRepository.getProductsFromList(cart.products.map((p) => p.prodid));
+      console.log(temp.data);
+      rawProducts = temp.data;
     }
-
-    this.products = [
-      {
-        prodid: 1,
-        prodname: 'MAESTROS DE HOJIBLANCA El Nuestro aceite de oliva virgen extra bidón 5 l',
-        prodcreatedtime: null,
-        prodviews: 1,
-        brand: {
-          branid: 1,
-          branname: 'MAESTROS DE HOJIBLANCA',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-      {
-        prodid: 2,
-        prodname: 'Aceite de oliva virgen extra PRODUCTO ALCAMPO garrafa de 5 l.',
-        prodcreatedtime: null,
-        prodviews: 0,
-        brand: {
-          branid: 2,
-          branname: 'ALCAMPO',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-      {
-        prodid: 3,
-        prodname: 'Aceite de oliva suave PRODUCTO ALCAMPO 1 l.',
-        prodcreatedtime: null,
-        prodviews: 0,
-        brand: {
-          branid: 2,
-          branname: 'ALCAMPO',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-      {
-        prodid: 4,
-        prodname: 'CARBONELL aceite de oliva suave 0,4º botella 1 l',
-        prodcreatedtime: null,
-        prodviews: 0,
-        brand: {
-          branid: 3,
-          branname: 'CARBONELL',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-      {
-        prodid: 5,
-        prodname: 'Aceite de oliva Virgen Extra PRODUCTO ALCAMPO 1 l.',
-        prodcreatedtime: null,
-        prodviews: 0,
-        brand: {
-          branid: 2,
-          branname: 'ALCAMPO',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-      {
-        prodid: 6,
-        prodname: 'LA ESPAÑOLA aceite de oliva suave 0,4º botella 1 l',
-        prodcreatedtime: null,
-        prodviews: 0,
-        brand: {
-          branid: 4,
-          branname: 'LA ESPAÑOLA',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-      {
-        prodid: 7,
-        prodname: 'Aceite de oliva intenso PRODUCTO ALCAMPO botella de 1 l.',
-        prodcreatedtime: null,
-        prodviews: 0,
-        brand: {
-          branid: 2,
-          branname: 'ALCAMPO',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-      {
-        prodid: 8,
-        prodname: 'Aceite de girasol PRODUCTO ALCAMPO garrafa de 5 l',
-        prodcreatedtime: null,
-        prodviews: 0,
-        brand: {
-          branid: 2,
-          branname: 'ALCAMPO',
-        },
-        category: {
-          cateid: 1,
-          catename: 'aceite_y_vinagre',
-        },
-      },
-    ];
-
+    console.log(this.products);
     this.products = this.productExtractor(rawProducts);
   },
   methods: {
@@ -177,6 +66,11 @@ export default {
           brand,
         };
       });
+    },
+
+    formatPrice(cents) {
+      const price = cents / 100;
+      return price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
     },
   },
 };

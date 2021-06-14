@@ -21,8 +21,10 @@
     }
 
     .menu {
-        margin: auto;
-        padding: 0 20px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
     }
 
     .q-tab {

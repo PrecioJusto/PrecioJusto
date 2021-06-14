@@ -6,9 +6,10 @@ export default {
   data() {
     return {
       temporalCart: false,
+      cartProducts: null,
     };
   },
-  created() {
+  async created() {
     if (this.$route.params.idcarrito) {
       this.temporalCart = false;
     } else {

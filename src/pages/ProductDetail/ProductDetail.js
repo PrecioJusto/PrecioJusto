@@ -21,6 +21,7 @@ export default {
     };
   },
   async mounted() {
+    if (this.$q.localStorage.getItem('user_cart') == null) this.$q.localStorage.set('user_cart', { products: [] });
     if (this.$route.params.idproduct) {
       const resp = await productRepository.getProduct({ prodid: this.$route.params.idproduct });
       this.product = resp.data;

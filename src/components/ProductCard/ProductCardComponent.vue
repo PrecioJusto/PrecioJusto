@@ -20,9 +20,9 @@
         </div>
 
         <div class="add-to-cart-wrapper">
-          <q-btn @click="cartCounter--" v-if="cartCounter > 0" unelevated color="primary" icon="las la-minus" class="add-product"/>
+          <q-btn @click="cartRemove" v-if="cartCounter > 0" unelevated color="primary" icon="las la-minus" class="add-product"/>
           <div class="counter" v-if="cartCounter > 0">{{ cartCounter }}</div>
-          <q-btn @click="cartCounter++" unelevated color="primary" icon="las la-plus" class="add-product"/>
+          <q-btn @click="cartAdd" unelevated color="primary" icon="las la-plus" class="add-product"/>
         </div>
       </q-card-actions>
     </q-card>

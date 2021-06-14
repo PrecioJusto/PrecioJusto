@@ -19,6 +19,10 @@ class ProductRepository {
     return apiProducts.get(`/category/${paramsIds.cateid}`);
   }
 
+  getCategoryPaged(page) {
+    return apiProducts.get(`/categories/${page}`);
+  }
+
   getContainers() {
     return apiProducts.get('/containers');
   }
@@ -45,6 +49,10 @@ class ProductRepository {
 
   getProductsOrderdedByViews(page) {
     return apiProducts.get(`/products/page/${page}`);
+  }
+
+  getTopProducts() {
+    return apiProducts.get('/products/top');
   }
 
   getProductsWithOfferOrderByPercentage() {

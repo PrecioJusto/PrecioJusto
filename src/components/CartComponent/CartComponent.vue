@@ -5,20 +5,20 @@
          <h3 class="customBold">Mi carrito</h3>
       </div>
       <q-list bordered padding class="rounded-borders">
-         <div v-for="product in products" :key="product.id" >
+         <div v-for="(product, idx) in products" :key="product.id" >
             <q-item>
             <q-item-section avatar>
                <q-img
-                  :src="url"
+                  :src="product.img"
                   style="width: 100px"
                   :ratio="1"
                   basic
                   class="rounded-borders"
                />
             </q-item-section>
-            <q-item-section class="clickable" @click="redirect(product.prodid)" cursor-pointer clickable v-ripple>
-               <q-item-label>{{ product.prodname }}</q-item-label>
-               <q-item-label caption>{{ product.brand.branname }}</q-item-label>
+            <q-item-section class="clickable" @click="redirect(product.id)" cursor-pointer clickable v-ripple>
+               <q-item-label>{{ product.name }}</q-item-label>
+               <q-item-label caption>{{ product.brand }}</q-item-label>
                <!--q-item-label>
                   <div class="add-to-cart-wrapper q-ml-xl">
                     <q-btn outline  v-if="cartCounter < 1" disable unelevated color="primary" icon="las la-minus" class="add-product"/>
@@ -31,10 +31,10 @@
 
             <q-item-section side >
                <q-icon class="clickable deleteIcon" @click="deleteProduct" name="las la-times" />
-               <p class="product-price">3.99€</p>
+               <p class="product-price">{{product.price}}</p>
             </q-item-section>
          </q-item>
-         <q-separator spaced inset="item" />
+         <q-separator v-if="idx != (products.length -1)" spaced inset="item" />
          </div>
       </q-list>
       <div class="compare-wrapper">
