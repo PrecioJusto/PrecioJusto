@@ -13,16 +13,16 @@ export default {
   data() {
     return {
       categoryName: '',
-      categoryColor: '',
       categoryImg: '',
       cardMode: '',
+      color: '',
     };
   },
   created() {
-    this.categoryName = this.category.name;
-    this.categoryColor = this.category.color;
-    this.categoryImg = this.category.img;
+    this.categoryName = this.category.catename;
+    this.categoryImg = this.category.cateimg;
     this.cardMode = (this.forHomePage) ? 'home-page' : 'explore-page';
+    this.color = this.category.colorClass;
   },
   methods: {
     categoryDetail() {

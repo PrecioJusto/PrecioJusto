@@ -31,6 +31,16 @@ const routes = [
     ],
   },
   {
+    path: '/categorias',
+    component: () => import('src/layouts/MainLayout/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/pages/Category/Categories.vue'),
+      },
+    ],
+  },
+  {
     path: '/user/',
     component: () => import('src/layouts/UserLayout/UserLayout.vue'),
     children: [
