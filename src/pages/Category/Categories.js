@@ -15,8 +15,14 @@ export default {
     this.categories = this.categories.data;
     const colors = ['green', 'red', 'blue', 'yellow', 'orange', 'purple'];
     this.categories.forEach((category) => {
+      category.catename = this.formatCategoryName(category.catename);
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       category.colorClass = randomColor;
     });
+  },
+  methods: {
+    formatCategoryName(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1).replaceAll('_', ' ');
+    },
   },
 };
