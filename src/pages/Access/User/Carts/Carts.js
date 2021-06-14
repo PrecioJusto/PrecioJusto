@@ -6,17 +6,15 @@ export default {
   data() {
     return {
       carts: null,
-      last: '',
     };
   },
   async created() {
     const carts = await userRepository.getShoppingCartsByUser();
-    this.carts = carts.data;
-    this.last = carts.data[carts.data.length - 1].shopid;
+    if (carts.data.length > 0) this.carts = carts.data;
   },
   methods: {
     redirect(id) {
-      this.$router.push(`/cart/${id}`);
+      this.$router.push(`/carrito/${id}`);
     },
     async deleteCart(id, name) {
       const response = await userRepository.deleteShoppingCart({ shopid: id });
@@ -27,8 +25,8 @@ export default {
             message: `El carrito con el nombre "${name}" se ha borrado correctamente`,
           },
         );
-        const carts = await userRepository.getShoppingCartsByUser();
-        this.carts = carts.data;
+        this.carts = this.carts.filter((c) => c.shopid !== id);
+        if (this.carts.length === 0) this.carts = null;
       }
     },
   },

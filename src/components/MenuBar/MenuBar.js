@@ -8,10 +8,10 @@ export default {
   },
   methods: {
     user() {
-      if (this.$router.currentRoute.fullPath !== '/user' && !this.$q.platform.is.mobile) {
-        this.$router.push({ path: '/user' });
-      } else if (this.$router.currentRoute.fullPath !== '/user/mobile' && this.$q.platform.is.mobile) {
-        this.$router.push({ path: '/user/mobile' });
+      if (this.$router.currentRoute.fullPath !== '/usuario' && !this.$q.platform.is.mobile) {
+        this.$router.push({ path: '/usuario' });
+      } else if (this.$router.currentRoute.fullPath !== '/usuario/movil' && this.$q.platform.is.mobile) {
+        this.$router.push({ path: '/usuario/movil' });
       }
     },
   },

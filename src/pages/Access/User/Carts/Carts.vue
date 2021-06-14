@@ -5,7 +5,7 @@
           <h1>Tus carritos guardados</h1>
 
           <q-list  bordered padding class="rounded-borders">
-            <p v-if="cart == null">No dispones de carritos guardados actualmente, puedes crearlos <span @click="$router.push('/carrito').catch(()=>{})">aquí</span></p>
+            <p v-if="carts == null">No dispones de carritos guardados actualmente, puedes crearlos <span @click="$router.push('/carrito').catch(()=>{})">aquí</span></p>
             <div v-else v-for="(cart, idx) in carts" :key="cart.shopid" >
               <q-item>
                 <q-item-section @click="redirect(cart.shopid)">
@@ -19,7 +19,6 @@
               <q-separator v-if="idx != (carts.length -1)" spaced />
             </div>
           </q-list>
-
         </div>
     </q-page>
   </div>

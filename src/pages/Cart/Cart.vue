@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <CartComponent :isTemporal="temporalCart" />
   </div>
 </template>

@@ -64,7 +64,7 @@
                 <q-btn label="Registrate" type="submit" color="primary" rounded/>
             </q-form>
             <div id="redirection">
-              ¿Ya tienes una de cuenta? <span  @click="$router.push('/login')">Entra</span>
+              ¿Ya tienes una de cuenta? <span  @click="$router.push('/entra')">Entra</span>
             </div>
           </div>
       </div>

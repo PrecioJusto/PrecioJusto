@@ -19,7 +19,7 @@ class ProductRepository {
     return apiProducts.get(`/category/${paramsIds.cateid}`);
   }
 
-  getCategoryPaged(page) {
+  getCategoriesPaged(page) {
     return apiProducts.get(`/categories/${page}`);
   }
 

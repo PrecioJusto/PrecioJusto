@@ -4,34 +4,34 @@ export default {
     return {
       menuList: [
         {
-          label: 'Mis datos', icon: 'las la-id-card', separator: true, route: '/user',
+          label: 'Mis datos', icon: 'las la-id-card', separator: true, route: '/usuario',
         },
         {
-          label: 'Notificaciones', icon: 'las la-bell', separator: true, route: '/user/settings/notifications',
+          label: 'Notificaciones', icon: 'las la-bell', separator: true, route: '/usuario/ajustes/notificaciones',
         },
         {
           label: 'Carritos',
           icon: 'las la-shopping-cart',
           separator: true,
-          route: '/user/carts',
+          route: '/usuario/carritos',
         },
         {
           label: 'Productos favoritos',
           icon: 'lar la-heart',
           separator: true,
-          route: '/user/products',
+          route: '/usuario/favoritos',
         },
         {
           label: 'Sobre Nosotros',
           icon: 'las la-info-circle',
           separator: true,
-          route: '/about',
+          route: '/sobrenosotros',
         },
         {
           label: 'Contactanos',
           icon: 'las la-hashtag',
           separator: true,
-          route: '/contact',
+          route: '/contacto',
         },
         {
           label: 'Cerrar sesión',

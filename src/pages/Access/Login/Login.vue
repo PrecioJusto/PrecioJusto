@@ -40,7 +40,7 @@
                 <q-btn label="Entra" type="submit" color="primary" no-caps rounded/>
             </q-form>
             <div id="redirection">
-              ¿Aún no tienes una cuenta? <span  @click="$router.push('/register')">Regístrate</span>
+              ¿Aún no tienes una cuenta? <span  @click="$router.push('/registro')">Regístrate</span>
             </div>
           </div>
         </div>

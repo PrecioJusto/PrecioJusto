@@ -8,10 +8,11 @@ const routes = [
       { path: ':categoria/productos', component: () => import('src/pages/ProductList/ProductList.vue') },
       { path: 'carrito', component: () => import('src/pages/Cart/Cart.vue') },
       { path: 'carrito/:idcart', component: () => import('src/pages/Cart/Cart.vue') },
+      { path: 'explora', component: () => import('src/pages/Category/Categories.vue') },
     ],
   },
   {
-    path: '/login',
+    path: '/entra',
     component: () => import('src/layouts/AccessLayout/AccessLayout.vue'),
     children: [
       {
@@ -21,7 +22,7 @@ const routes = [
     ],
   },
   {
-    path: '/register',
+    path: '/registro',
     component: () => import('src/layouts/AccessLayout/AccessLayout.vue'),
     children: [
       {
@@ -31,27 +32,17 @@ const routes = [
     ],
   },
   {
-    path: '/categorias',
-    component: () => import('src/layouts/MainLayout/MainLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('src/pages/Category/Categories.vue'),
-      },
-    ],
-  },
-  {
-    path: '/user/',
+    path: '/usuario/',
     component: () => import('src/layouts/UserLayout/UserLayout.vue'),
     children: [
       { path: '', component: () => import('src/pages/Access/User/Details/UserDetails.vue') },
-      { path: 'settings/notifications', component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue') },
-      { path: 'mobile', component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue') },
-      { path: 'carts', component: () => import('src/pages/Access/User/Carts/Carts.vue') },
+      { path: 'ajustes/notificaciones', component: () => import('src/pages/Access/User/Notifications/UserNotifications.vue') },
+      { path: 'movil', component: () => import('src/pages/Access/User/UserMenuMobile/UserMenuMobile.vue') },
+      { path: 'carritos', component: () => import('src/pages/Access/User/Carts/Carts.vue') },
     ],
   },
   {
-    path: '/contact',
+    path: '/contacto',
     component: () => import('src/layouts/UserLayout/UserLayout.vue'),
     children: [
       {
@@ -61,7 +52,7 @@ const routes = [
     ],
   },
   {
-    path: '/about',
+    path: '/sobrenosotros',
     component: () => import('src/layouts/UserLayout/UserLayout.vue'),
     children: [
       {
