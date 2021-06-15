@@ -33,11 +33,8 @@ export default {
       const resp = await productRepository.getProduct({ prodid: this.$route.params.idproduct });
       if (resp.messageError) this.$router.push('/');
       this.product = resp.data;
-<<<<<<< HEAD
-=======
       this.product.brand.branname = this.formatBrand(this.product.brand.branname);
 
->>>>>>> origin/develop
       this.supermarketProductsExtractor();
       this.initComparingTable();
     }
@@ -136,11 +133,6 @@ export default {
     formatPrice(cents) {
       const price = cents / 100;
       return price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
-    },
-
-    formatBrand(str) {
-      if (str === '_unknown') return '';
-      return str;
     },
   },
 };

@@ -48,7 +48,7 @@ export default {
           }
         });
         this.$q.localStorage.set('user_cart', cart);
-        this.refreshCart();
+        this.refreshCart(productId);
       }
     },
 
