@@ -19,7 +19,7 @@ const apiApplication = axios.create({
 });
 
 const apiProducts = axios.create({
-  baseURL: 'http://preciojustoapp.z126.esliceu.tk:12650',
+  baseURL: 'https://preciojustoapp.z126.esliceu.tk:12643/api',
 });
 
 function createNotification(notifyType, msg) {
