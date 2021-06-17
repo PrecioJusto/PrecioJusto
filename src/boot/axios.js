@@ -4,8 +4,6 @@ import GAuth from 'vue-google-oauth2';
 import { Notify, LocalStorage } from 'quasar';
 import getMessageFromCode from 'src/utils/responseMapper';
 
-// import router from 'src/router';
-
 const url = require('url');
 
 const options = {
@@ -31,7 +29,7 @@ function createNotification(notifyType, msg) {
 
 export const instances = { apiApplication, apiProducts };
 
-[apiApplication, apiProducts].forEach((instance) => {
+[apiApplication].forEach((instance) => {
   instance.interceptors.request.use(
     (config) => {
       config.withCredentials = true;
@@ -40,7 +38,9 @@ export const instances = { apiApplication, apiProducts };
     },
     (error) => Promise.reject(error),
   );
+});
 
+[apiApplication, apiProducts].forEach((instance) => {
   instance.interceptors.response.use(
     (response) => {
       const conf = url.parse(response.config.url);
