@@ -52,8 +52,10 @@ export default {
     },
     async loginOAuth() {
       await this.$gAuth.signIn().then(async (user) => {
-        if (user.qc.access_token) this.googleCall(user.qc.access_token);
-        else if (user.acces_token) this.googleCall(user.acces_token);
+        if (user.qc) this.googleCall(user.qc.access_token);
+        else if (user.mc) {
+          this.googleCall(user.mc.access_token);
+        }
       });
     },
     async googleCall(token) {
