@@ -52,11 +52,15 @@ export default {
     },
     async loginOAuth() {
       await this.$gAuth.signIn().then(async (user) => {
-        const userFinal = await fetch(`https://preciojusto.app/api/usergoogle/${user.qc.access_token}`).then((x) => x.json());
-        if (userFinal.token) {
-          this.saveUserAndRedirect(userFinal);
-        }
+        if (user.qc.access_token) this.googleCall(user.qc.access_token);
+        else if (user.acces_token) this.googleCall(user.acces_token);
       });
+    },
+    async googleCall(token) {
+      const userFinal = await fetch(`https://preciojusto.app/api/usergoogle/${token}`).then((x) => x.json());
+      if (userFinal.token) {
+        this.saveUserAndRedirect(userFinal);
+      }
     },
     vuelidateMsg(type) {
       if (type === 'password') {
