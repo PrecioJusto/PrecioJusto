@@ -131,7 +131,9 @@ export default {
     },
 
     checkQuant() {
-      this.cartCounter = this.cart.products.filter((p) => p.prodid === parseInt(this.$route.params.idproduct, 10))[0].prodquant;
+      const prod = this.cart.products.filter((p) => p.prodid === parseInt(this.$route.params.idproduct, 10));
+      if (prod.length !== 0) this.cartCounter = prod[0].prodquant;
+      else this.cartCounter = 0;
     },
 
     cartAdd() {
