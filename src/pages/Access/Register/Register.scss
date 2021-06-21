@@ -10,15 +10,14 @@
             #form-container{
                 background-color: white;
                 border-radius: 10px;
-                margin: 200px  200px auto 60% ;
+                margin: 160px  200px auto 60% ;
                 width: 470px;
-                padding: 45px;
+                padding: 50px;
                 -webkit-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
                 -moz-box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
                 box-shadow: 10px 7px 22px -8px rgba(0, 0, 0, 0.73);
 
                 form {
-                    margin:20px 0;
                     button {
                         margin-top: 15px;
                     }
@@ -51,6 +50,7 @@
             background-color: white;
         }
         form {
+            padding: 10% 4%;
             button {
                 margin: 15px;
                 width: 96%;

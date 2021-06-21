@@ -5,6 +5,7 @@
          <h3 class="customBold">Mi carrito</h3>
       </div>
       <q-list bordered padding class="rounded-borders">
+         <p v-if="products.length < 1">No dispones de productos en el carrito actualmente, añadelos <span @click="$router.push('/').catch(()=>{})">aquí</span></p>
          <div v-for="(product, idx) in products" :key="product.id" >
             <q-item>
             <q-item-section avatar>

@@ -13,7 +13,7 @@ export default {
 
   async created() {
     if (this.$route.params.search) {
-      this.formatCategoryName(`Resultados para '${this.$route.params.search}':`);
+      this.formatCategoryName(this.$route.params.search);
       this.initProducts();
     } else {
       this.$router.push('/');
@@ -23,7 +23,7 @@ export default {
     '$route.params.search': {
       handler() {
         this.initProducts();
-        this.formatCategoryName(`Resultados para '${this.$route.params.search}':`);
+        this.formatCategoryName(this.$route.params.search);
       },
       deep: true,
       immediate: true,

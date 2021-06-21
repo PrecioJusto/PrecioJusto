@@ -19,9 +19,9 @@
                 <div class="price-wrapper"><div class="price customBold q-ml-sm">{{ formatPrice(productLowerPrice) }}</div></div>
                 <div class="add-to-cart-wrapper q-ml-xl">
                     <q-btn outline  v-if="cartCounter < 1" disable unelevated color="primary" icon="las la-minus" class="add-product"/>
-                    <q-btn outline  v-else @click="cartCounter--" unelevated color="primary" icon="las la-minus" class="add-product"/>
+                    <q-btn outline  v-else @click="cartRemove" unelevated color="primary" icon="las la-minus" class="add-product"/>
                     <div class="counter">{{ cartCounter }}</div>
-                    <q-btn outline @click="cartCounter++" unelevated color="primary" icon="las la-plus" class="add-product"/>
+                    <q-btn outline @click="cartAdd" unelevated color="primary" icon="las la-plus" class="add-product"/>
                 </div>
             </div>
         </div>

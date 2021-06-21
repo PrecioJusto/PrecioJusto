@@ -21,10 +21,15 @@ export default {
       isFavourite: false,
       user: this.$q.localStorage.getItem('user'),
       auth_token: this.$q.localStorage.getItem('auth_token'),
+      cart: this.$q.localStorage.getItem('user_cart'),
     };
   },
   async created() {
-    if (this.$q.localStorage.getItem('user_cart') == null) this.$q.localStorage.set('user_cart', { products: [] });
+    this.checkQuant();
+    if (this.cart == null) {
+      this.$q.localStorage.set('user_cart', { products: [] });
+      this.cart = { products: [] };
+    }
     if (this.auth_token) {
       const fauvoriteProds = await userRepository.getFavouriteProducts();
       this.isFavourite = fauvoriteProds.data.filter((p) => p.prodid === parseInt(this.$route.params.idproduct, 10)).length !== 0;
@@ -123,6 +128,34 @@ export default {
           },
         );
       }
+    },
+
+    checkQuant() {
+      this.cartCounter = this.cart.products.filter((p) => p.prodid === parseInt(this.$route.params.idproduct, 10))[0].prodquant;
+    },
+
+    cartAdd() {
+      this.cartCounter += 1;
+      const productAllreadyAdded = this.cart.products.filter((p) => { if (p.prodid === this.product.prodid) return p; return null; });
+      if (productAllreadyAdded.length !== 0) {
+        this.cart.products.forEach((p) => {
+          if (p.prodid === this.product.prodid) p.prodquant = this.cartCounter;
+        });
+      } else {
+        this.cart.products.push({ prodid: this.product.prodid, prodquant: this.cartCounter });
+      }
+      this.$q.localStorage.set('user_cart', this.cart);
+    },
+
+    cartRemove() {
+      this.cartCounter -= 1;
+      this.cart.products.forEach((p) => {
+        if (p.prodid === this.product.prodid) {
+          if (p.prodquant === 1) this.cart.products = this.cart.products.filter((p2) => p2 !== p);
+          else p.prodquant = this.cartCounter;
+        }
+      });
+      this.$q.localStorage.set('user_cart', this.cart);
     },
 
     formatBrand(str) {
