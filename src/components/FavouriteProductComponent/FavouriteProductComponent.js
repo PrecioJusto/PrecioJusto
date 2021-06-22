@@ -6,17 +6,17 @@ export default {
   props: {},
   data() {
     return {
-      products: [],
+      products: null,
       isEmpty: false,
       user: this.$q.localStorage.getItem('user'),
     };
   },
   async created() {
-    const request = await userRepository.getFavouriteProducts();
+    /* const request = await userRepository.getFavouriteProducts();
     if (request.data) {
       const rawProds = request.data;
       if (rawProds.length > 0) this.products = this.productExtractor(rawProds, 0);
-    }
+    } */
   },
   methods: {
     async deleteProduct(productId) {

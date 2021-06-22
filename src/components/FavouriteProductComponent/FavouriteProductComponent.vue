@@ -4,6 +4,7 @@
          <h3>Mis productos favoritos</h3>
       </div>
       <q-list bordered padding class="rounded-borders">
+         <p v-if="products == null">No dispones de productos favoritos actualmente, puedes crearlos <span @click="$router.push('/').catch(()=>{})">aquí</span></p>
          <div v-for="(product, idx) in products" :key="product.id" >
             <q-item>
             <q-item-section avatar>
