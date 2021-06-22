@@ -58,8 +58,8 @@ export default {
         const user = await userRepository.register({
           username: this.name, usersurname: this.surname, useremail: this.email, userpass: this.password, userpassrepeat: this.confirmPassword,
         });
-        if (user.data.email) {
-          this.$router.push({ path: '/login' });
+        if (user.data.useremail) {
+          this.$router.push({ path: '/entra' });
         }
       }
     },

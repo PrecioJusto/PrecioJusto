@@ -6,6 +6,17 @@
 
 h3 {
     font-size: 25pt;
+    text-align: center;
+    width: 100%;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+    span {
+        font-weight: bold;
+        color: $primary;
+    }
 }
 
 .clickable {
