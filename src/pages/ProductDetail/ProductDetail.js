@@ -30,12 +30,12 @@ export default {
       this.$q.localStorage.set('user_cart', { products: [] });
       this.cart = { products: [] };
     }
-    if (this.auth_token) {
+    /* if (this.auth_token) {
       const fauvoriteProds = await userRepository.getFavouriteProducts();
       if (fauvoriteProds.data) {
         this.isFavourite = fauvoriteProds.data.filter((p) => p.prodid === parseInt(this.$route.params.idproduct, 10)).length !== 0;
       }
-    }
+    } */
     if (this.$route.params.idproduct) {
       const resp = await productRepository.getProduct({ prodid: this.$route.params.idproduct });
       if (resp.messageError) this.$router.push('/');
