@@ -13,8 +13,10 @@ export default {
   },
   async created() {
     const request = await userRepository.getFavouriteProducts();
-    const rawProds = request.data;
-    if (rawProds.length > 0) this.products = this.productExtractor(rawProds, 0);
+    if (request.data) {
+      const rawProds = request.data;
+      if (rawProds.length > 0) this.products = this.productExtractor(rawProds, 0);
+    }
   },
   methods: {
     async deleteProduct(productId) {
